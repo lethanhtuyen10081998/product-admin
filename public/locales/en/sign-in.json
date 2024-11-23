@@ -1,0 +1,7 @@
+{
+  "title": "Sign in",
+  "password": "Password",
+  "messages": {
+    "agencies_sign_in_success": "Login successfully!"
+  }
+}

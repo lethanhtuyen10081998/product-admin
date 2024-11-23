@@ -1,0 +1,12 @@
+{
+  "title": "Giới hạn nợ",
+  "debt_limit": "Giới hạn nợ",
+  "name": "Tên",
+  "limited_amount": "Số tiền giới hạn",
+  "edit_debt_limit": "Chỉnh sửa giới hạn nợ",
+  "create_debt_limit": "Tạo giới hạn nợ",
+  "message": {
+    "please_enter_name": "Vui lòng nhập tên giới hạn nợ!",
+    "please_enter_limited_amount": "Vui lòng nhập số tiền giới hạn!"
+  }
+}

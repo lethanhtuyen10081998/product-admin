@@ -1,0 +1,11 @@
+{
+  "title": "Commission List",
+  "create_commission": "Create commission",
+  "edit_commission": "Edit commission",
+  "message": {
+    "please_enter_commission_value": "Please enter commission value!",
+    "please_enter_level_value": "Please enter level value!",
+    "create_commisson_level_success": "Create commission level success!",
+    "update_commisson_level_success": "Update commission level success!"
+  }
+}

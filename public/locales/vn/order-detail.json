@@ -1,0 +1,10 @@
+{
+  "orders": "Danh sách đơn hàng",
+  "order_information": "Thông tin đơn hàng",
+  "order": "Đơn hàng #{{id}}",
+  "date_order": "Ngày đặt hàng",
+  "total_items": "Tổng số mặt hàng",
+  "item_id": "ID",
+  "sim_id": "ID SIM",
+  "product_name": "Tên sản phẩm"
+}

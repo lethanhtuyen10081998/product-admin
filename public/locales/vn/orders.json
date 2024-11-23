@@ -1,0 +1,10 @@
+{
+  "title": "Danh sách đơn hàng",
+  "FilterForm": {
+    "user_fullname": "Tên người dùng",
+    "order_id": "ID đơn hàng",
+    "user_id": "ID người dùng",
+    "order_date": "Ngày đặt hàng",
+    "refund_order": "Hoàn tiền đơn hàng"
+  }
+}

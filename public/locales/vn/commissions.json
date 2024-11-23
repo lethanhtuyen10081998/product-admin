@@ -1,0 +1,11 @@
+{
+  "title": "Danh sách hoa hồng",
+  "create_commission": "Tạo hoa hồng",
+  "edit_commission": "Chỉnh sửa hoa hồng",
+  "message": {
+    "please_enter_commission_value": "Vui lòng nhập giá trị hoa hồng!",
+    "please_enter_level_value": "Vui lòng nhập giá trị cấp độ!",
+    "create_commisson_level_success": "Tạo cấp độ hoa hồng thành công!",
+    "update_commisson_level_success": "Cập nhật cấp độ hoa hồng thành công!"
+  }
+}

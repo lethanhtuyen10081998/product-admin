@@ -1,0 +1,10 @@
+{
+  "orders": "List Order",
+  "order_information": "Order Information",
+  "order": "Order #{{id}}",
+  "date_order": "Date order",
+  "total_items": "Total items",
+  "item_id": "ID",
+  "sim_id": "Sim ID",
+  "product_name": "Product name"
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Danh sách đại lý",
+  "create_agency": "Tạo đại lý",
+  "set_up_debit": "Thiết lập nợ",
+  "recharge": "Nạp tiền",
+  "lock_account": "Khóa tài khoản",
+  "unlock_account": "Mở khóa tài khoản",
+  "messages": {
+    "change_status_account_success": "Bạn đã thay đổi trạng thái tài khoản thành công!",
+    "change_status_account_not_success": "Bạn thay đổi trạng thái tài khoản thất bại!"
+  },
+  "active": "Hoạt động",
+  "inactive": "Ngừng hoạt động"
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Đăng nhập",
+  "password": "Mật khẩu",
+  "messages": {
+    "agencies_sign_in_success": "Đăng nhập thành công!"
+  }
+}

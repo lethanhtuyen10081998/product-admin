@@ -1,0 +1,9 @@
+{
+  "title": "Logs",
+  "module": "Module",
+  "content": "Content",
+  "step": "Step",
+  "input": "Input",
+  "error": "Error",
+  "process_id": "Process ID"
+}
