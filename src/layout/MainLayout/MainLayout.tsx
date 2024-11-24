@@ -122,15 +122,11 @@ export default function ResponsiveDrawer(props: Props) {
               left: 0,
               width: { sm: `calc(100% - ${drawerWidth + 48}px)` },
               ml: { sm: `${drawerWidth + 24}px` },
-              background: '#eaeff1',
               zIndex: 1000,
             }}
           >
             <Box
               mt={3}
-              sx={{
-                backgroundColor: (theme) => theme.palette.common.white,
-              }}
               component={Paper}
             >
               <Header />
@@ -177,7 +173,6 @@ export default function ResponsiveDrawer(props: Props) {
               flexGrow: 1,
               p: 3,
               width: { sm: `calc(100% - ${drawerWidth}px)` },
-              background: '#eaeff1',
               minHeight: '100vh',
             }}
           >

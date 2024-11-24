@@ -3,7 +3,6 @@ import { IThemeOption } from './types';
 import variables from './variables';
 
 export default function componentStyleOverrides(theme: IThemeOption): Components | undefined {
-  const bgColor = theme.colors.common.white;
 
   return {
     MuiCssBaseline: {

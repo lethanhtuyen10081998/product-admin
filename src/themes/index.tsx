@@ -91,6 +91,11 @@ const theme = () => {
   const themeOptions: ThemeOptions = {
     direction: 'ltr',
     palette: {
+      mode: 'dark',
+      background: {
+        default: color.backgroundDefault,
+        paper: color.paper,
+      },
       common: {
         white: color.white,
         black: color.black,
@@ -168,7 +173,7 @@ const theme = () => {
   // Disable the below line if you want to reject customized style
   themes.components = componentStyleOverrides(themeOption);
 
-  return themes;
+  return themes;  
 };
 
 export default theme;
