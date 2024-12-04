@@ -1,11 +1,9 @@
 import { Avatar, Box, Typography } from '@mui/material';
-import { useEffect } from 'react';
-import { useProfileContext } from 'src/context/profileContext/hooksContext';
-import { useProfileAPI } from 'src/context/profileContext/provider';
-import useProfile from 'src/services/auth/profile';
+import { useCollapsible } from 'src/context/layoutContext/hooksContext';
 
 function ProfileView() {
-  const { mutation } = useProfile();
+  const collapsible = useCollapsible();
+  // const { mutation } = useProfile();
   // const { onUpdateLoading, onUpdateProfile } = useProfileAPI();
   // const { profile } = useProfileContext();
 
@@ -18,11 +16,12 @@ function ProfileView() {
   // }, [onUpdateLoading, onUpdateProfile]);
 
   return (
-    <Box px={4} py={3}>
+    <Box py={3}>
       <Box
         display='flex'
         alignItems='center'
-        gap={2}
+        justifyContent='center'
+        gap={!collapsible ? 2 : 0}
         sx={{
           overflow: 'hidden',
         }}
@@ -31,9 +30,12 @@ function ProfileView() {
           AD
         </Avatar>
 
-        <Typography>
-          {/* {[profile?.userInfo?.first_name, profile?.userInfo?.last_name].join(' ')} */}
-        </Typography>
+        {!collapsible && (
+          <Typography>
+            {/* {[profile?.userInfo?.first_name, profile?.userInfo?.last_name].join(' ')} */}
+            Admin
+          </Typography>
+        )}
       </Box>
     </Box>
   );

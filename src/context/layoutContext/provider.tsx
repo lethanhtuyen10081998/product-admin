@@ -1,15 +1,19 @@
 import React, { createContext, useContext, useMemo, useReducer } from 'react';
 import { API, Actions, ActionsTypes, Breadcrumb, State } from './actions';
-import { BreadcrumbContext } from './hooksContext';
+import { BreadcrumbContext, CollapsibleContext } from './hooksContext';
 
 const initialState: State = {
   breadcrumbs: [],
+  collapsible: false,
 };
 
 const filterReducer = (state: State, action: Actions): State => {
   switch (action.type) {
     case ActionsTypes.ON_SET_BREADCRUM:
       return { ...state, breadcrumbs: action.payload };
+
+    case ActionsTypes.ON_COLLAPSIBLE_DRAWER:
+      return { ...state, collapsible: action.payload };
 
     default:
       return state;
@@ -30,14 +34,21 @@ export const LayoutContextProvider: React.FC<{
       dispatch({ type: ActionsTypes.ON_SET_BREADCRUM, payload });
     };
 
+    const onSetCollapsible = (payload: boolean) => {
+      dispatch({ type: ActionsTypes.ON_COLLAPSIBLE_DRAWER, payload });
+    };
+
     return {
       onSetBreadcrum,
+      onSetCollapsible,
     };
   }, []);
 
   return (
     <LayoutAPIContext.Provider value={actionContext}>
-      <BreadcrumbContext.Provider value={state.breadcrumbs}>{children}</BreadcrumbContext.Provider>
+      <CollapsibleContext.Provider value={state.collapsible}>
+        <BreadcrumbContext.Provider value={state.breadcrumbs}>{children}</BreadcrumbContext.Provider>
+      </CollapsibleContext.Provider>
     </LayoutAPIContext.Provider>
   );
 };

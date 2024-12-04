@@ -10,15 +10,17 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DrawerItemProps } from './types';
 import NextLink from 'src/components/material/NextLink';
 import { useRouter } from 'next/router';
+import { useCollapsible } from 'src/context/layoutContext/hooksContext';
 
 export default function DrawerItem(props: DrawerItemProps) {
   const { icon, title, showDivider } = props;
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const collapsible = useCollapsible();
 
   const route = 'route' in props ? props.route : null;
   const subItems = 'subItems' in props ? props.subItems : null;
@@ -84,13 +86,18 @@ export default function DrawerItem(props: DrawerItemProps) {
           >
             {icon}
           </ListItemIcon>
-          <ListItemText
-            primary={title}
-            sx={{
-              textTransform: 'capitalize',
-            }}
-          />
-          {subItems?.length ? isCollapsed ? <ExpandMoreIcon /> : <ExpandLessIcon /> : null}
+          {!collapsible && (
+            <>
+              <ListItemText
+                primary={title}
+                sx={{
+                  textTransform: 'capitalize',
+                  transition: 'text-transform 1s ease-in-out',
+                }}
+              />
+              {subItems?.length ? isCollapsed ? <ExpandMoreIcon /> : <ExpandLessIcon /> : null}
+            </>
+          )}
         </ListItemButton>
       ) : (
         <NextLink href={route || ''}>
@@ -131,13 +138,17 @@ export default function DrawerItem(props: DrawerItemProps) {
             >
               {icon}
             </ListItemIcon>
-            <ListItemText
-              primary={title}
-              sx={{
-                textTransform: 'capitalize',
-              }}
-            />
-            {subItems?.length ? isCollapsed ? <ExpandMoreIcon /> : <ExpandLessIcon /> : null}
+            {!collapsible && (
+              <>
+                <ListItemText
+                  primary={title}
+                  sx={{
+                    textTransform: 'capitalize',
+                  }}
+                />
+                {subItems?.length ? isCollapsed ? <ExpandMoreIcon /> : <ExpandLessIcon /> : null}
+              </>
+            )}
           </ListItemButton>
         </NextLink>
       )}
@@ -192,12 +203,14 @@ export default function DrawerItem(props: DrawerItemProps) {
                   >
                     {it.icon}
                   </ListItemIcon>
-                  <ListItemText
-                    primary={it.title}
-                    sx={{
-                      textTransform: 'capitalize',
-                    }}
-                  />
+                  {!collapsible && (
+                    <ListItemText
+                      primary={it.title}
+                      sx={{
+                        textTransform: 'capitalize',
+                      }}
+                    />
+                  )}
                 </ListItemButton>
               </NextLink>
             ))}

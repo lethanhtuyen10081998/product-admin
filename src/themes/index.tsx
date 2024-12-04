@@ -78,6 +78,7 @@ const theme = () => {
       disable: color.disable,
       action: {
         active: color.actionActive,
+        disabled: color.actionDisabled,
       },
     },
     paper: color.paper,
@@ -91,11 +92,6 @@ const theme = () => {
   const themeOptions: ThemeOptions = {
     direction: 'ltr',
     palette: {
-      mode: 'dark',
-      background: {
-        default: color.backgroundDefault,
-        paper: color.paper,
-      },
       common: {
         white: color.white,
         black: color.black,
@@ -130,27 +126,8 @@ const theme = () => {
         main: color.warningMain,
         contrastText: color.textWarning,
       },
-      info: {
-        dark: color.infoDark,
-        light: color.infoLight,
-        main: color.infoMain,
-        contrastText: color.textInfo,
-      },
-      grey: {
-        50: color.grey50,
-        100: color.grey100,
-        200: color.grey200,
-        300: color.grey300,
-        400: color.grey400,
-        500: color.grey500,
-        600: color.grey600,
-        700: color.grey700,
-        800: color.grey800,
-        900: color.grey900,
-      },
-      divider: color.divider,
-      action: {
-        active: color.actionActive,
+      text: {
+        primary: color.text,
       },
     },
     mixins: {
@@ -173,7 +150,7 @@ const theme = () => {
   // Disable the below line if you want to reject customized style
   themes.components = componentStyleOverrides(themeOption);
 
-  return themes;  
+  return themes;
 };
 
 export default theme;

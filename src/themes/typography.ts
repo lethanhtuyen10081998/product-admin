@@ -8,38 +8,38 @@ import { IThemeOption } from './types';
 
 export default function themeTypography(theme: IThemeOption): TypographyOptions {
   return {
-    fontFamily: 'Open Sans',
+    fontFamily: 'Myriad Pro',
     h6: {
       color: theme.heading,
-      fontWeight: 700,
-      fontSize: '0.75rem',
+      fontWeight: 400,
+      fontSize: '0.85rem',
     },
 
     h5: {
       color: theme.heading,
       fontWeight: 700,
-      fontSize: '0.9rem',
-      fontFamily: 'Open Sans',
+      fontSize: '1rem',
+      fontFamily: 'Myriad Pro',
     },
 
     h4: {
       color: theme.heading,
-      fontWeight: 500,
-      fontSize: '1.15rem',
-      fontFamily: 'Open Sans',
+      fontWeight: 700,
+      fontSize: '1.25rem',
+      fontFamily: 'Myriad Pro',
     },
     h3: {
       color: theme.heading,
       fontWeight: 400,
-      fontSize: '1.525rem',
-      fontFamily: 'Open Sans',
+      fontSize: '1.625rem',
+      fontFamily: 'Myriad Pro',
     },
 
     h2: {
       color: theme.heading,
       fontWeight: 400,
-      fontSize: '1.6rem',
-      fontFamily: 'Open Sans',
+      fontSize: '1.77689rem',
+      fontFamily: 'Myriad Pro',
       lineHeight: 1.25,
     },
 
@@ -47,20 +47,20 @@ export default function themeTypography(theme: IThemeOption): TypographyOptions 
       fontSize: '2.5rem',
       color: theme.heading,
       fontWeight: 400,
-      fontFamily: 'Open Sans',
+      fontFamily: 'Myriad Pro',
       lineHeight: 1.25,
     },
 
     subtitle1: {
       fontSize: '1rem',
       fontWeight: 500,
-      fontFamily: 'Open Sans',
+      fontFamily: 'Myriad Pro',
     },
 
     subtitle2: {
       fontSize: '0.875rem',
       fontWeight: 400,
-      fontFamily: 'Open Sans',
+      fontFamily: 'Myriad Pro',
     },
 
     caption: {
@@ -78,7 +78,7 @@ export default function themeTypography(theme: IThemeOption): TypographyOptions 
     },
 
     body1: {
-      fontSize: '0.9rem',
+      fontSize: '1rem',
       fontWeight: 400,
       lineHeight: '1.334em',
     },

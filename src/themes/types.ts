@@ -45,7 +45,7 @@ export type Color = {
     dark: string;
     text: string;
   };
-  orange: {
+  orange?: {
     light: string;
     main: string;
     dark: string;
@@ -72,5 +72,6 @@ export type Color = {
   disable: string;
   action: {
     active: string;
+    disabled: string;
   };
 };

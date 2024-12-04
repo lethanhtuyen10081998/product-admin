@@ -10,7 +10,7 @@ function Navigation(props: LayoutProps) {
     <>
       <Box px={4} py={3}>
         <Typography fontWeight='bold' variant='h4'>
-          Forfun Store
+          Logo
         </Typography>
       </Box>
       <Box px={2}>

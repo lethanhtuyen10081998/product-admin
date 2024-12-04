@@ -68,6 +68,7 @@ export default function themePalette(theme: IThemeOption): PaletteOptions {
     divider: theme.divider,
     action: {
       active: theme.colors.action.active,
+      disabled: theme.colors.action.disabled,
     },
   };
 }

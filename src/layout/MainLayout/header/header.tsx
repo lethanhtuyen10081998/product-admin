@@ -7,8 +7,12 @@ import ProfileMenu from './components/profileMenu';
 import { HeaderProps } from './types';
 import { PADDING } from 'src/constants/grid';
 import LanguageSwitcher from 'src/components/ui/LanguageSwitcher';
+import { useLayoutAPI } from 'src/context/layoutContext/provider';
+import { useCollapsible } from 'src/context/layoutContext/hooksContext';
 
 function Header(_props: HeaderProps) {
+  const { onSetCollapsible } = useLayoutAPI();
+  const collapsible = useCollapsible();
   const renderMenuButton = () => {
     const icon = (
       <IconButton
@@ -17,6 +21,7 @@ function Header(_props: HeaderProps) {
           color: (theme) => theme.palette.common.black,
         }}
         aria-label='Expaned Menu'
+        onClick={() => onSetCollapsible(!collapsible)}
       >
         <MenuOpenIcon
           sx={{

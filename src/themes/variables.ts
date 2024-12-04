@@ -1,13 +1,13 @@
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   drawerWidth: 'calc(16.21rem + 3.25vw)',
-  drawerContentPadding: 24,
   drawerMobileWidth: 85,
   buttonMinWidth: 100,
   borderStyle: 'solid',
   borderRadius: '8px',
   borderRadiusSm: '8px',
   borderRadiusMd: '12px',
-  borderRadiusLg: '32px',
+  borderRadiusLg: '16px',
   borderRadiusXl: '20px',
   borderRadiusCard: '12px',
   overflowHidden: 'hidden',
