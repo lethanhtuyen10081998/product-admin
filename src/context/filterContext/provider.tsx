@@ -123,4 +123,4 @@ export const FilterContextProvider = ({ children }: { children: React.ReactNode 
   );
 };
 
-export const useAPIFilter = () => useContext(FilterAPIContext);
+export const useAPIFilterContext = () => useContext(FilterAPIContext);

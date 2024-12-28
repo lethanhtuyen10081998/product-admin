@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { GridColumns } from '@mui/x-data-grid';
 import useTranslation from 'next-translate/useTranslation';
 import { formatMoney } from 'src/libs/utils';

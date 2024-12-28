@@ -22,7 +22,7 @@ export type Permission = {
   }[];
 };
 
-export enum Role {
+export enum UserRole {
   SELLER = 'seller',
   AGENCY = 'agency',
   ADMIN = 'admin',
@@ -53,14 +53,14 @@ export const ActionForModules = {
 
 export const permissions: Permission[] = [
   {
-    role: Role.SELLER,
+    role: UserRole.SELLER,
     permissions: [
       { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
       { module: ModulesName.SELL, actions: ActionForModules.SELL },
     ],
   },
   {
-    role: Role.ADMIN,
+    role: UserRole.ADMIN,
     permissions: [
       { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
       { module: ModulesName.PRODUCT, actions: ActionForModules.PRODUCT },
@@ -68,7 +68,7 @@ export const permissions: Permission[] = [
     ],
   },
   {
-    role: Role.SUPER_ADMIN,
+    role: UserRole.SUPER_ADMIN,
     //ALL permissions
     permissions: [],
   },

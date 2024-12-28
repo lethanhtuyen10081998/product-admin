@@ -3,7 +3,7 @@ import Table from 'src/components/material/Table';
 import { Routes } from 'src/constants/route';
 import { useData } from 'src/context/dataContext/hooksContext';
 import { useLimit, useLoading, usePage } from 'src/context/filterContext/hooksContext';
-import { useAPIFilter } from 'src/context/filterContext/provider';
+import { useAPIFilterContext } from 'src/context/filterContext/provider';
 import { formatString } from 'src/libs/utils';
 import useColumns from './columns';
 
@@ -11,7 +11,7 @@ const TableData = () => {
   const limit = useLimit();
   const page = usePage();
   const loading = useLoading();
-  const { onUpdateLimit, onUpdatePage } = useAPIFilter();
+  const { onUpdateLimit, onUpdatePage } = useAPIFilterContext();
   const { columns } = useColumns();
   const { rows: data, total } = useData();
 
@@ -29,9 +29,7 @@ const TableData = () => {
         onUpdateLimit(pageSize);
       }}
       pagination
-      onRowDoubleClick={(row) => {
-        router.push(formatString(Routes.AGENCY_DETAIL, { id: row.id }));
-      }}
+      onRowDoubleClick={(row) => {}}
     />
   );
 };

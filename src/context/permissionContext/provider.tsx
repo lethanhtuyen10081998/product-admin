@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useMemo, useReducer } from 'react';
 import { PermissionContext } from './hooksContext';
 import { API, Actions, ActionsTypes, State } from './actions';
-import { ActionForModules, ModulesName, Permission, Role } from 'src/types/user';
+import { ActionForModules, ModulesName, Permission, UserRole } from 'src/types/user';
 
 export const SELLER_PERMISSION = {
-  role: Role.SELLER,
+  role: UserRole.SELLER,
   permissions: [
     { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
     { module: ModulesName.PRODUCT, actions: ['read'] },
@@ -13,7 +13,7 @@ export const SELLER_PERMISSION = {
 };
 
 export const AGENCY_PERMISSION = {
-  role: Role.AGENCY,
+  role: UserRole.AGENCY,
   permissions: [
     { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
     { module: ModulesName.PRODUCT, actions: ['read'] },
@@ -22,7 +22,7 @@ export const AGENCY_PERMISSION = {
 };
 
 export const ADMIN_PERMISSION = {
-  role: Role.ADMIN,
+  role: UserRole.ADMIN,
   permissions: [
     { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
     { module: ModulesName.PRODUCT, actions: ['read'] },
