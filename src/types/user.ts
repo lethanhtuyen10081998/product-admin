@@ -37,6 +37,7 @@ export const ModulesName = {
   PRODUCT: 'product',
   SELL: 'sell',
   DASHBOARD: 'dashboard',
+  PERMISSION_MANAGEMENT: 'permission_management',
 };
 
 export const ActionForModules = {
@@ -47,6 +48,7 @@ export const ActionForModules = {
   PRODUCT: ['create', 'update', 'delete', 'print', 'export'],
   SELL: ['create', 'update', 'delete', 'print', 'export'],
   DASHBOARD: ['read'],
+  PERMISSION_MANAGEMENT: ['create', 'update', 'delete'],
 };
 
 export const permissions: Permission[] = [

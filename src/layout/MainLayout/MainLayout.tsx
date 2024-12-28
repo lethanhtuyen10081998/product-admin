@@ -69,16 +69,25 @@ function ResponsiveDrawer(props: Props) {
       subItems: [],
       module: ModulesName.PRODUCT,
     },
+
+    {
+      icon: <Icon name='support' />,
+      route: Routes.PERMISSION_MANAGEMENT,
+      title: t('menu.permission_management'),
+      subItems: [],
+      module: ModulesName.PERMISSION_MANAGEMENT,
+    },
   ];
   const { children } = props;
 
-  drawerItems = drawerItems.filter((item) => permissions.some((permission) =>
-    permission.module === item.module && permission.actions.length > 0
-  ));
+  drawerItems = drawerItems.filter((item) =>
+    permissions.some(
+      (permission) => permission.module === item.module && permission.actions.length > 0,
+    ),
+  );
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <Box
         position='fixed'
         sx={{

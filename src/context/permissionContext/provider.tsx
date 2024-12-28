@@ -3,15 +3,36 @@ import { PermissionContext } from './hooksContext';
 import { API, Actions, ActionsTypes, State } from './actions';
 import { ActionForModules, ModulesName, Permission, Role } from 'src/types/user';
 
+export const SELLER_PERMISSION = {
+  role: Role.SELLER,
+  permissions: [
+    { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
+    { module: ModulesName.PRODUCT, actions: ['read'] },
+    { module: ModulesName.SELL, actions: ['read'] },
+  ],
+};
+
+export const AGENCY_PERMISSION = {
+  role: Role.AGENCY,
+  permissions: [
+    { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
+    { module: ModulesName.PRODUCT, actions: ['read'] },
+    { module: ModulesName.SELL, actions: ['read'] },
+  ],
+};
+
+export const ADMIN_PERMISSION = {
+  role: Role.ADMIN,
+  permissions: [
+    { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
+    { module: ModulesName.PRODUCT, actions: ['read'] },
+    { module: ModulesName.SELL, actions: ['read'] },
+    { module: ModulesName.PERMISSION_MANAGEMENT, actions: ['create', 'update', 'delete'] },
+  ],
+};
+
 const initialState: State = {
-  permission: {
-    role: Role.SELLER,
-    permissions: [
-      { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
-      { module: ModulesName.PRODUCT, actions: ['read'] },
-      { module: ModulesName.SELL, actions: ['read'] },
-    ],
-  },
+  permission: ADMIN_PERMISSION,
 };
 
 const reducer = (state: State, action: Actions): State => {
@@ -42,9 +63,8 @@ export const PermissionContextProvider: React.FC<{
       dispatch({ type: ActionsTypes.ON_UPDATE_PERMISSION, payload });
     };
 
-
     return {
-      onUpdatePermission
+      onUpdatePermission,
     };
   }, []);
 
@@ -54,4 +74,3 @@ export const PermissionContextProvider: React.FC<{
     </APIContext.Provider>
   );
 };
-

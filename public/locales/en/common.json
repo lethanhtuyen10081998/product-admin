@@ -46,7 +46,8 @@
   "menu": {
     "order": "Order",
     "sell": "Sell",
-    "products": "Products"
+    "products": "Products",
+    "permission_management": "Permission Management"
   },
   "reset": "Reset",
   "sub_total": "Sub total",
