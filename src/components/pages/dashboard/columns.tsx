@@ -2,12 +2,11 @@ import { Box, Typography } from '@mui/material';
 import { GridColumns } from '@mui/x-data-grid';
 import useTranslation from 'next-translate/useTranslation';
 import { formatMoney } from 'src/libs/utils';
-import { Agency } from 'src/types/agency';
 
 const useColumns = () => {
   const { t } = useTranslation();
 
-  const columns: GridColumns<Agency> = [
+  const columns: GridColumns<any> = [
     {
       field: 'action',
       sortable: false,

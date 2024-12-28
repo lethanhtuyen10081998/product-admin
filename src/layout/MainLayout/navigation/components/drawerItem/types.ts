@@ -5,6 +5,8 @@ export type DrawerItemProps = {
   icon: ReactNode;
   showDivider?: boolean;
   route?: string;
+  show?: boolean;
+  module?: string;
   subItems: Array<{
     title: string;
     icon?: ReactNode;

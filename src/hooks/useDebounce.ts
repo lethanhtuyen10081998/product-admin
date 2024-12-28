@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 export const useDebounced = ({
   delay,
   initialValue,
-  onCallback = () => {},
+  onCallback = () => { },
 }: {
   initialValue?: string;
   delay: number;

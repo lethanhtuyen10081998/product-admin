@@ -1,11 +1,8 @@
-import { Agency } from './agency';
-
 export type UserProfile = {
   username: string;
   userInfo: UserInfo;
-  wallet: Wallet;
   phone: string;
-  agency?: Agency;
+  permission: Permission;
 };
 
 export type UserInfo = {
@@ -17,12 +14,60 @@ export type UserInfo = {
   user_id: string;
 };
 
-export type Wallet = {
-  id: string;
-  amount: number;
-  active: number;
-  user_id: string;
-  version: number;
-  created_at: string;
-  updated_at: string;
+export type Permission = {
+  role: string;
+  permissions: {
+    module: string;
+    actions: string[];
+  }[];
 };
+
+export enum Role {
+  SELLER = 'seller',
+  AGENCY = 'agency',
+  ADMIN = 'admin',
+  SUPER_ADMIN = 'super_admin',
+}
+
+export const ModulesName = {
+  USER: 'user',
+  ROLE: 'role',
+  PERMISSION: 'permission',
+  ORDER: 'order',
+  PRODUCT: 'product',
+  SELL: 'sell',
+  DASHBOARD: 'dashboard',
+};
+
+export const ActionForModules = {
+  USER: ['create', 'update', 'delete'],
+  ROLE: ['create', 'update', 'delete'],
+  PERMISSION: ['create', 'update', 'delete'],
+  ORDER: ['create', 'update', 'delete', 'print', 'export'],
+  PRODUCT: ['create', 'update', 'delete', 'print', 'export'],
+  SELL: ['create', 'update', 'delete', 'print', 'export'],
+  DASHBOARD: ['read'],
+};
+
+export const permissions: Permission[] = [
+  {
+    role: Role.SELLER,
+    permissions: [
+      { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
+      { module: ModulesName.SELL, actions: ActionForModules.SELL },
+    ],
+  },
+  {
+    role: Role.ADMIN,
+    permissions: [
+      { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
+      { module: ModulesName.PRODUCT, actions: ActionForModules.PRODUCT },
+      { module: ModulesName.DASHBOARD, actions: ActionForModules.DASHBOARD },
+    ],
+  },
+  {
+    role: Role.SUPER_ADMIN,
+    //ALL permissions
+    permissions: [],
+  },
+];

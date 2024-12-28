@@ -2,6 +2,7 @@ import React, { createContext, useContext, useMemo, useReducer } from 'react';
 import { ProfileContext } from './hooksContext';
 import { API, Actions, ActionsTypes, State } from './actions';
 import { UserProfile } from 'src/types/user';
+import { usePermissionAPIContext } from '../permissionContext/provider';
 
 const initialState: State = {
   data: {
@@ -44,6 +45,8 @@ export const ProfileContextProvider: React.FC<{
     ...initialState,
   });
 
+  const { onUpdatePermission } = usePermissionAPIContext();
+
   const actionContext: API = useMemo(() => {
     const onUpdateLoading = (payload: boolean) => {
       dispatch({ type: ActionsTypes.ON_UPDATE_LOADING, payload });
@@ -51,13 +54,14 @@ export const ProfileContextProvider: React.FC<{
 
     const onUpdateProfile = (payload: UserProfile) => {
       dispatch({ type: ActionsTypes.ON_UPDATE_PROFILE, payload });
+      onUpdatePermission(payload.permission);
     };
 
     return {
       onUpdateLoading,
       onUpdateProfile,
     };
-  }, []);
+  }, [onUpdatePermission]);
 
   return (
     <ProfileAPIContext.Provider value={actionContext}>

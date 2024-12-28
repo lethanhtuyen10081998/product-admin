@@ -57,3 +57,28 @@ export const serverSideUnAuthentication = (handler: NextIronHandler) => {
     return handler(request, response);
   });
 };
+
+export const serverSideSellerAuthentication = (handler: NextIronHandler) => {
+  return withSession(async (request: NextIronRequest, response: NextApiResponse) => {
+    const access_token = request.req.session.get(COOKIE_TOKEN_KEY);
+    //@TODO: Implement this function
+    // 1. Get user info
+    // 2. Check user role
+    // 3. Check user role is seller or not
+    // 4. If user role is seller, return handler(request, response);
+    // 5. If user role is not seller, return {
+    //     redirect: {
+    //       destination: '/' + request?.locale || 'vn',
+    //     },
+    //   };
+
+    if (access_token) {
+      return {
+        redirect: {
+          destination: '/' + request?.locale || 'vn',
+        },
+      };
+    }
+    return handler(request, response);
+  });
+};

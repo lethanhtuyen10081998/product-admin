@@ -3,8 +3,7 @@
   "en": "English",
   "message": {
     "update_success": "Successfully updated!",
-    "update_success_failed": "Update information failed!",
-    "message_helper_text_enter_commission": "Please press enter to enter a value in addition to the options below."
+    "update_success_failed": "Update information failed!"
   },
   "fullname": "Full name",
   "submit": "Submit",
@@ -31,7 +30,6 @@
   "paid": "Paid",
   "refund_success": "Refund success",
   "refund_not_success": "Refund not success",
-  "revenue": "Revenue",
   "discount": "Discount",
   "action": "Action",
   "detail": "Detail",
@@ -42,18 +40,13 @@
   "note": "Note",
   "total": "Total",
   "status": "Status",
-  "recharge": "Recharge",
   "cancel": "Cancel",
   "save": "Save",
-  "level_agency": "Agency Level {{level}}",
   "level": "Level",
   "menu": {
-    "agency": "Agency",
-    "recharges_history": "Recharges History",
     "order": "Order",
-    "logs": "Logs",
-    "settings": "Settings",
-    "debit_limit": "Debit limit"
+    "sell": "Sell",
+    "products": "Products"
   },
   "reset": "Reset",
   "sub_total": "Sub total",
@@ -65,7 +58,6 @@
   "refund": "Refund",
   "yes": "Yes",
   "no": "No",
-  "debt_limit": "Debt limit",
   "month": {
     "1": "January",
     "2": "February",

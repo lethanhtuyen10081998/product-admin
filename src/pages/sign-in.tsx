@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import Head from 'next/head';
 import { serverSideUnAuthentication } from 'src/auth/session';
-import SignIn from 'src/components/page/auth/signIn';
+import SignIn from 'src/components/pages/auth/signIn';
 import PublicLayout from 'src/layout/PublicLayout/PublicLayout';
 
 const SignInPage = () => {
