@@ -44,7 +44,7 @@ const ProductTableContent = () => {
         }}
         pagination
         disableColumnMenu
-        onRowDoubleClick={(row) => {
+        onRowClick={(row) => {
           onSelectedProduct({ ...row.row, quantity: 1 });
         }}
       />

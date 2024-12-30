@@ -13,12 +13,12 @@ const SelectedProductsContent = () => {
   const { onUpdateQuantity } = useAPISelectedProductContext();
 
   return (
-    <Box sx={{ maxHeight: 500 }}>
+    <Box>
       <Table
         editMode='cell'
         rows={data}
         columns={columns}
-        height={500}
+        height={400}
         density='compact'
         disableColumnMenu
         hideFooter
