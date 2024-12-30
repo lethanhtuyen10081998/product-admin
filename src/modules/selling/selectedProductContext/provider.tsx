@@ -1,8 +1,7 @@
-import React, { createContext, useContext, useEffect, useMemo, useReducer } from 'react';
+import React, { createContext, useContext, useMemo, useReducer } from 'react';
+import { Product } from 'src/types/product';
 import { API, Actions, ActionsTypes, State } from './actions';
 import { SelectedProductContext } from './hooksContext';
-import { QueryObserverResult } from '@tanstack/react-query';
-import { Product } from 'src/types/product';
 
 const initialState: State = {
   selectedProducts: [],
@@ -12,6 +11,18 @@ const reducer = (state: State, action: Actions): State => {
   switch (action.type) {
     case ActionsTypes.ON_SELECTED_PRODUCT: {
       return { ...state, selectedProducts: [...state.selectedProducts, action.payload] };
+    }
+    case ActionsTypes.ON_UPDATE_QUANTITY: {
+      console.log(action.payload);
+      return {
+        ...state,
+        selectedProducts: state.selectedProducts.map((product) => {
+          if (product.id == action.payload.id) {
+            return { ...product, amount: action.payload.amount };
+          }
+          return product;
+        }),
+      };
     }
 
     default:
@@ -32,8 +43,13 @@ export const SelectedProductContextProvider = ({ children }: { children: React.R
       dispatch({ type: ActionsTypes.ON_SELECTED_PRODUCT, payload });
     };
 
+    const onUpdateQuantity = (payload: { id: string; amount: number }) => {
+      dispatch({ type: ActionsTypes.ON_UPDATE_QUANTITY, payload });
+    };
+
     return {
       onSelectedProduct,
+      onUpdateQuantity,
     };
   }, []);
 

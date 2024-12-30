@@ -9,12 +9,13 @@ const useColumns = () => {
   const columns: GridColumns<any> = [
     {
       field: 'user.phone',
-      headerName: t('Mã sản phẩm'),
+      headerName: t('Mã SP'),
       minWidth: 100,
       align: 'center',
       renderCell: ({ row }) => {
         return <Typography>{row.id}</Typography>;
       },
+      hideSortIcons: true,
     },
     {
       field: 'name',

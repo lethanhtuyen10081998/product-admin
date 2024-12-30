@@ -38,6 +38,7 @@ const ProductTableContent = () => {
           onUpdateLimit(pageSize);
         }}
         pagination
+        disableColumnMenu
         onRowDoubleClick={(row) => {
           onSelectedProduct(row.row);
         }}

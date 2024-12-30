@@ -5,21 +5,26 @@ import { useData } from 'src/context/dataContext/hooksContext';
 import { useAPIDataContext } from 'src/context/dataContext/provider';
 import { useSelectedProduct } from 'src/modules/selling/selectedProductContext/hooksContext';
 import useColumns from './columns';
+import { useAPISelectedProductContext } from 'src/modules/selling/selectedProductContext/provider';
 
 const SelectedProductsContent = () => {
   const { columns } = useColumns();
   const { rows: data } = useData();
+  const { onUpdateQuantity } = useAPISelectedProductContext();
 
   return (
     <Box sx={{ maxHeight: 500 }}>
       <Table
-        editMode='row'
+        editMode='cell'
         rows={data}
         columns={columns}
         height={500}
         density='compact'
         disableColumnMenu
         hideFooter
+        onCellEditCommit={(params) => {
+          onUpdateQuantity({ id: params.id.toString(), amount: params.value });
+        }}
       />
     </Box>
   );

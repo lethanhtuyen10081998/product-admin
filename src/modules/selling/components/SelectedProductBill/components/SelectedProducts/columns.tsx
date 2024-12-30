@@ -9,7 +9,7 @@ const useColumns = () => {
   const columns: GridColumns<any> = [
     {
       field: 'id',
-      headerName: t('Mã sản phẩm'),
+      headerName: t('Mã SP'),
       minWidth: 100,
       align: 'center',
       renderCell: ({ row }) => {
@@ -33,9 +33,8 @@ const useColumns = () => {
     {
       field: 'amount',
       headerName: t('Số lượng'),
-      renderCell: ({ row }) => {
-        return <Typography color='primary'>{row.amount}</Typography>;
-      },
+      editable: true,
+      type: 'number',
     },
     {
       field: 'unit',

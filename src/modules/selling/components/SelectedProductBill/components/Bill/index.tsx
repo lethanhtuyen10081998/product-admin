@@ -6,6 +6,7 @@ import { SPACING } from 'src/constants/grid';
 import useYupValidationResolver from 'src/helpers/useYupValidationResolver';
 import { validation } from './validation';
 import FormTextField from 'src/components/material/form/FormTextField';
+import { useSelectedProduct } from 'src/modules/selling/selectedProductContext/hooksContext';
 
 export type FilterProductRequest = {
   totalQuantity: number;
@@ -27,6 +28,9 @@ function Bill() {
     resolver,
   });
   const { t } = useTranslation('sign-in');
+  const selectedProducts = useSelectedProduct();
+
+  console.log(selectedProducts);
 
   return (
     <Box component={Paper} p={SPACING.md}>
