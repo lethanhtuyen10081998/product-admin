@@ -31,12 +31,19 @@ const useColumns = () => {
       minWidth: 250,
     },
     {
-      field: 'amount',
+      field: 'quantity',
       headerName: t('Số lượng'),
       editable: true,
+      align: 'center',
       type: 'number',
+      minWidth: 100,
+      preProcessEditCellProps: (params) => {
+        const hasError = params.props.value < 1;
+        return { ...params.props, error: hasError };
+      },
     },
     {
+      align: 'center',
       field: 'unit',
       headerName: t('Đơn vị tính'),
       renderCell: ({ row }) => {

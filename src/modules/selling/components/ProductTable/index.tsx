@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Table from 'src/components/material/Table';
 import { SPACING } from 'src/constants/grid';
 import { useData } from 'src/context/dataContext/hooksContext';
@@ -10,6 +10,8 @@ import useListProduct from 'src/services/product/getListProduct';
 import { FilterProduct } from './components/FilterProduct';
 import useColumns from './columns';
 import { useAPISelectedProductContext } from '../../selectedProductContext/provider';
+import { GridSelectionModel } from '@mui/x-data-grid';
+import { useSelectedProduct } from '../../selectedProductContext/hooksContext';
 
 const ProductTableContent = () => {
   const limit = useLimit();
@@ -19,11 +21,13 @@ const ProductTableContent = () => {
   const { columns } = useColumns();
   const { rows: data, total } = useData();
   const { onSelectedProduct } = useAPISelectedProductContext();
+  const selectedProducts = useSelectedProduct();
 
   return (
     <Box display='grid' gap={SPACING.sm}>
       <FilterProduct />
       <Table
+        selectionModel={selectedProducts.map((product) => product.id)}
         sxBox={{ height: 'calc(100vh - 260px)' }}
         columns={columns}
         rows={data}
@@ -33,6 +37,7 @@ const ProductTableContent = () => {
         density='compact'
         pageSize={limit}
         page={page - 1}
+        checkboxSelection={false}
         rowsPerPageOptions={[5, 10, 20, 50]}
         onPageSizeChange={(pageSize) => {
           onUpdateLimit(pageSize);
@@ -40,7 +45,7 @@ const ProductTableContent = () => {
         pagination
         disableColumnMenu
         onRowDoubleClick={(row) => {
-          onSelectedProduct(row.row);
+          onSelectedProduct({ ...row.row, quantity: 1 });
         }}
       />
     </Box>

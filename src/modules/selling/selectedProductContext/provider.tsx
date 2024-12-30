@@ -10,15 +10,28 @@ const initialState: State = {
 const reducer = (state: State, action: Actions): State => {
   switch (action.type) {
     case ActionsTypes.ON_SELECTED_PRODUCT: {
+      const isExist = state.selectedProducts.find((product) => product.id == action.payload.id);
+
+      if (isExist) {
+        return {
+          ...state,
+          selectedProducts: state.selectedProducts.map((product) => {
+            if (product.id == action.payload.id) {
+              return { ...product, quantity: product.quantity + action.payload.quantity };
+            }
+            return product;
+          }),
+        };
+      }
+
       return { ...state, selectedProducts: [...state.selectedProducts, action.payload] };
     }
     case ActionsTypes.ON_UPDATE_QUANTITY: {
-      console.log(action.payload);
       return {
         ...state,
         selectedProducts: state.selectedProducts.map((product) => {
           if (product.id == action.payload.id) {
-            return { ...product, amount: action.payload.amount };
+            return { ...product, quantity: action.payload.amount };
           }
           return product;
         }),

@@ -2,11 +2,12 @@ import { Typography } from '@mui/material';
 import { GridColumns } from '@mui/x-data-grid';
 import useTranslation from 'next-translate/useTranslation';
 import { formatMoney } from 'src/libs/utils';
+import { Product } from 'src/types/product';
 
 const useColumns = () => {
   const { t } = useTranslation();
 
-  const columns: GridColumns<any> = [
+  const columns: GridColumns<Product> = [
     {
       field: 'user.phone',
       headerName: t('Mã SP'),
@@ -23,15 +24,17 @@ const useColumns = () => {
       minWidth: 450,
     },
     {
-      field: 'amount',
+      field: 'quantity',
       headerName: t('Số lượng'),
       minWidth: 50,
       renderCell: ({ row }) => {
-        return <Typography>{row.amount}</Typography>;
+        return <Typography>{row.quantity}</Typography>;
       },
+      align: 'center',
     },
     {
       field: 'unit',
+      align: 'center',
       headerName: t('Đơn vị tính'),
       renderCell: ({ row }) => {
         return <Typography color='primary'>{row.unit}</Typography>;
