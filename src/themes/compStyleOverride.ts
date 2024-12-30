@@ -172,6 +172,7 @@ export default function componentStyleOverrides(theme: IThemeOption): Components
           fontSize: '1rem',
           fontWeight: 700,
           borderRadius: variables.borderRadius,
+          marginLeft: '8px',
           color: 'primary.light',
           '&::placeholder': {
             color: 'primary.light',
@@ -181,7 +182,9 @@ export default function componentStyleOverrides(theme: IThemeOption): Components
         },
         root: {
           marginTop: 0,
-          '& .MuiSvgIcon-root': {},
+          '& .MuiSvgIcon-root': {
+            color: theme.colors.grey[500],
+          },
         },
       },
     },
