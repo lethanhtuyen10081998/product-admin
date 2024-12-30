@@ -12,7 +12,15 @@ const SelectedProductsContent = () => {
 
   return (
     <Box sx={{ maxHeight: 500 }}>
-      <Table editMode='row' rows={data} columns={columns} hideFooter height={500} />
+      <Table
+        editMode='row'
+        rows={data}
+        columns={columns}
+        height={500}
+        density='compact'
+        disableColumnMenu
+        hideFooter
+      />
     </Box>
   );
 };

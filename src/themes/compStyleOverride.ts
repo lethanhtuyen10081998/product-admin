@@ -206,7 +206,6 @@ export default function componentStyleOverrides(theme: IThemeOption): Components
 
         notchedOutline: {},
         input: {
-          padding: '16.5px 14px 14px 14px',
           ':disabled': {
             background: theme.colors.action.disabled,
           },

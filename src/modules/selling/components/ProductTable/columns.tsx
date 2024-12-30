@@ -11,6 +11,7 @@ const useColumns = () => {
       field: 'user.phone',
       headerName: t('Mã sản phẩm'),
       minWidth: 100,
+      align: 'center',
       renderCell: ({ row }) => {
         return <Typography>{row.id}</Typography>;
       },

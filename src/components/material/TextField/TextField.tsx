@@ -13,13 +13,13 @@ export const TextField = (props: Props) => {
     <MaterialTextField
       margin='normal'
       fullWidth
-      {...others}
       error={error}
       sx={{
         ...props.sx,
       }}
       helperText={t(helperText as string)}
       variant='standard'
+      {...others}
     />
   );
 };

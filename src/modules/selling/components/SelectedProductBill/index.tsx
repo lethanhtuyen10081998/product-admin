@@ -1,10 +1,14 @@
+import { Box } from '@mui/material';
+import { Bill } from './components/Bill';
 import { SelectedProducts } from './components/SelectedProducts';
+import { SPACING } from 'src/constants/grid';
 
 const SelectedProductBill = () => {
   return (
-    <div>
+    <Box display='grid' gap={SPACING.md}>
+      <Bill />
       <SelectedProducts />
-    </div>
+    </Box>
   );
 };
 

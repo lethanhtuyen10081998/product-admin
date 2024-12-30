@@ -11,12 +11,14 @@ const useColumns = () => {
       field: 'id',
       headerName: t('Mã sản phẩm'),
       minWidth: 100,
+      align: 'center',
       renderCell: ({ row }) => {
         return <Typography>{row.id}</Typography>;
       },
     },
     {
       field: 'idCode',
+      align: 'center',
       headerName: t('Mã vạch'),
       minWidth: 100,
       renderCell: ({ row }) => {

@@ -24,11 +24,13 @@ const ProductTableContent = () => {
     <Box display='grid' gap={SPACING.sm}>
       <FilterProduct />
       <Table
+        sxBox={{ height: 'calc(100vh - 260px)' }}
         columns={columns}
         rows={data}
         loading={loading}
         onPageChange={(page) => onUpdatePage(page)}
         rowCount={total}
+        density='compact'
         pageSize={limit}
         page={page - 1}
         rowsPerPageOptions={[5, 10, 20, 50]}
