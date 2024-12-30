@@ -47,6 +47,8 @@ import { Facebook } from './facebook';
 import { Google } from './google';
 import { ViewAll } from './view-all';
 import { Language } from './language';
+import { Stock } from './stock';
+
 const icons = {
   //Material Icons
   'account-circle': AccountCircleOutlinedIcon,
@@ -94,6 +96,7 @@ const icons = {
   google: Google,
   'view-all': ViewAll,
   language: Language,
+  stock: Stock,
 };
 
 type ColorTypes =

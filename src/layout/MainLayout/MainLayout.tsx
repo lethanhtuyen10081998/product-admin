@@ -74,10 +74,31 @@ function ResponsiveDrawer(props: Props) {
 
     {
       icon: <Icon name='support' />,
-      route: Routes.PERMISSION_MANAGEMENT,
-      title: t('menu.permission_management'),
-      subItems: [],
+      title: t('menu.management'),
+      subItems: [
+        {
+          icon: <Icon name='account' />,
+          route: Routes.PERMISSION_MANAGEMENT,
+          title: t('menu.permission'),
+          module: ModulesName.PERMISSION_MANAGEMENT,
+        },
+      ],
       module: ModulesName.PERMISSION_MANAGEMENT,
+    },
+
+    {
+      icon: <Icon name='stock' />,
+      route: Routes.STOCK,
+      title: t('menu.stock'),
+      subItems: [
+        {
+          icon: <Icon name='account' />,
+          route: Routes.IMPORT_STOCK,
+          title: t('menu.import_stock'),
+          module: ModulesName.IMPORT_STOCK,
+        },
+      ],
+      module: ModulesName.STOCK,
     },
   ];
 

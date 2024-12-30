@@ -38,6 +38,9 @@ export enum ModulesName {
   SELL = 'sell',
   DASHBOARD = 'dashboard',
   PERMISSION_MANAGEMENT = 'permission_management',
+  STOCK = 'stock',
+  IMPORT_STOCK = 'stock.import',
+  EXPORT_STOCK = 'stock.export',
 }
 
 export enum ActionEnum {
@@ -47,6 +50,7 @@ export enum ActionEnum {
   PRINT = 'print',
   EXPORT = 'export',
   READ = 'read',
+  IMPORT = 'import',
 }
 
 export const ActionForModules = {
@@ -76,6 +80,7 @@ export const ActionForModules = {
   ],
   DASHBOARD: [ActionEnum.READ],
   PERMISSION_MANAGEMENT: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+  STOCK: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
 };
 
 export const permissions: Permission[] = [

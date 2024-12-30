@@ -11,5 +11,6 @@ export type DrawerItemProps = {
     title: string;
     icon?: ReactNode;
     route: string;
+    module?: string;
   }>;
 };

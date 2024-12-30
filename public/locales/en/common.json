@@ -47,7 +47,11 @@
     "order": "Order",
     "sell": "Sell",
     "products": "Products",
-    "permission_management": "Permission Management"
+    "management": "Management",
+    "stock": "Stock",
+    "import_stock": "Import Stock",
+    "export_stock": "Export Stock",
+    "permission": "Permission"
   },
   "reset": "Reset",
   "sub_total": "Sub total",

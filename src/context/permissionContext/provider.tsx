@@ -34,6 +34,18 @@ export const ADMIN_PERMISSION = {
       module: ModulesName.PERMISSION_MANAGEMENT,
       actions: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
     },
+    {
+      module: ModulesName.STOCK,
+      actions: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+    },
+    {
+      module: ModulesName.IMPORT_STOCK,
+      actions: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+    },
+    {
+      module: ModulesName.EXPORT_STOCK,
+      actions: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+    },
   ],
 };
 
