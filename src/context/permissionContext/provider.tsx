@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useMemo, useReducer } from 'react';
 import { PermissionContext } from './hooksContext';
 import { API, Actions, ActionsTypes, State } from './actions';
-import { ActionForModules, ModulesName, Permission, UserRole } from 'src/types/user';
+import { ActionEnum, ActionForModules, ModulesName, Permission, UserRole } from 'src/types/user';
 
 export const SELLER_PERMISSION = {
   role: UserRole.SELLER,
   permissions: [
     { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
-    { module: ModulesName.PRODUCT, actions: ['read'] },
-    { module: ModulesName.SELL, actions: ['read'] },
+    { module: ModulesName.PRODUCT, actions: [ActionEnum.CREATE] },
+    { module: ModulesName.SELL, actions: [ActionEnum.CREATE] },
   ],
 };
 
@@ -25,9 +25,15 @@ export const ADMIN_PERMISSION = {
   role: UserRole.ADMIN,
   permissions: [
     { module: ModulesName.ORDER, actions: ActionForModules.ORDER },
-    { module: ModulesName.PRODUCT, actions: ['read'] },
-    { module: ModulesName.SELL, actions: ['read'] },
-    { module: ModulesName.PERMISSION_MANAGEMENT, actions: ['create', 'update', 'delete'] },
+    { module: ModulesName.PRODUCT, actions: [ActionEnum.READ] },
+    {
+      module: ModulesName.SELL,
+      actions: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+    },
+    {
+      module: ModulesName.PERMISSION_MANAGEMENT,
+      actions: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+    },
   ],
 };
 
