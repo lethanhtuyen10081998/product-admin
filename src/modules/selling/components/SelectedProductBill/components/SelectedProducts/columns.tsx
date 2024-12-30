@@ -84,7 +84,11 @@ const useColumns = () => {
       field: 'total',
       headerName: t('Thành tiền'),
       renderCell: ({ row }) => {
-        return <Typography color='green'>{formatMoney(row.price)}</Typography>;
+        return (
+          <Typography color='green' fontWeight='bold'>
+            {formatMoney(row.price * row.quantity)}
+          </Typography>
+        );
       },
       width: 100,
     },
