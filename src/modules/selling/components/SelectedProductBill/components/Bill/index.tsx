@@ -120,34 +120,19 @@ function Bill() {
                         name='amountPaid'
                         label={t('Số tiền khách trả')}
                         onChange={(e: any) => {
-                          if (e.key === 'Enter') {
-                            const value = e.target.value;
+                          const value = e.target.value || '';
+                          if (value) {
                             const totalPrice = convertMoneyToNumber(
                               methods.getValues('totalPrice'),
                             );
-                            const amountPaid = convertMoneyToNumber(`${value},000`);
+                            const amountPaid = convertMoneyToNumber(`${value}`);
                             const amountChange = amountPaid - totalPrice;
 
-                            methods.setValue('amountPaid', `${value},000`);
-                            methods.setValue('amountChange', `${formatMoney(amountChange)}`);
-                          } else {
-                            const value = e.target.value || '';
-                            if (value) {
-                              const totalPrice = convertMoneyToNumber(
-                                methods.getValues('totalPrice'),
-                              );
-                              const amountPaid = convertMoneyToNumber(`${value}`);
-                              const amountChange = amountPaid - totalPrice;
-
-                              console.log({ amountChange, amountPaid, value });
-                              console.log(amountChange < 0 ? '0' : `${amountChange}`);
-
-                              methods.setValue('amountPaid', `${amountPaid}`);
-                              methods.setValue(
-                                'amountChange',
-                                amountChange < 0 ? '0' : `${amountChange}`,
-                              );
-                            }
+                            methods.setValue('amountPaid', `${amountPaid}`);
+                            methods.setValue(
+                              'amountChange',
+                              amountChange < 0 ? '0' : `${amountChange}`,
+                            );
                           }
                         }}
                         onKeyDown={(e: any) => {
