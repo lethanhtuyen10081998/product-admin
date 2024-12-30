@@ -18,7 +18,7 @@ export type Permission = {
   role: string;
   permissions: {
     module: string;
-    actions: string[];
+    actions: ActionEnum[];
   }[];
 };
 
@@ -40,15 +40,42 @@ export enum ModulesName {
   PERMISSION_MANAGEMENT = 'permission_management',
 }
 
+export enum ActionEnum {
+  CREATE = 'create',
+  UPDATE = 'update',
+  DELETE = 'delete',
+  PRINT = 'print',
+  EXPORT = 'export',
+  READ = 'read',
+}
+
 export const ActionForModules = {
-  USER: ['create', 'update', 'delete'],
-  ROLE: ['create', 'update', 'delete'],
-  PERMISSION: ['create', 'update', 'delete'],
-  ORDER: ['create', 'update', 'delete', 'print', 'export'],
-  PRODUCT: ['create', 'update', 'delete', 'print', 'export'],
-  SELL: ['create', 'update', 'delete', 'print', 'export'],
-  DASHBOARD: ['read'],
-  PERMISSION_MANAGEMENT: ['create', 'update', 'delete'],
+  USER: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+  ROLE: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+  PERMISSION: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
+  ORDER: [
+    ActionEnum.CREATE,
+    ActionEnum.UPDATE,
+    ActionEnum.DELETE,
+    ActionEnum.PRINT,
+    ActionEnum.EXPORT,
+  ],
+  PRODUCT: [
+    ActionEnum.CREATE,
+    ActionEnum.UPDATE,
+    ActionEnum.DELETE,
+    ActionEnum.PRINT,
+    ActionEnum.EXPORT,
+  ],
+  SELL: [
+    ActionEnum.CREATE,
+    ActionEnum.UPDATE,
+    ActionEnum.DELETE,
+    ActionEnum.PRINT,
+    ActionEnum.EXPORT,
+  ],
+  DASHBOARD: [ActionEnum.READ],
+  PERMISSION_MANAGEMENT: [ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE],
 };
 
 export const permissions: Permission[] = [

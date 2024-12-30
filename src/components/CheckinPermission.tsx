@@ -1,4 +1,6 @@
+import { useModuleContext } from 'src/context/moduleContext/hooksContext';
 import { usePermissionContext } from 'src/context/permissionContext/hooksContext';
+import { ModulesName, ActionEnum } from 'src/types/user';
 
 const CheckinPermission = ({
   children,
@@ -6,12 +8,14 @@ const CheckinPermission = ({
   actions,
 }: {
   children: React.ReactNode;
-  module: string;
-  actions: string[];
+  module?: ModulesName;
+  actions: ActionEnum[];
 }) => {
+  const contextModule = useModuleContext();
+  const selectedModule = module || contextModule;
   const { permissions } = usePermissionContext();
 
-  const permission = permissions.find((permission) => permission.module === module);
+  const permission = permissions.find((permission) => permission.module === selectedModule);
 
   if (!permission || !permission.actions.length) {
     return null;

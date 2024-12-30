@@ -14,6 +14,8 @@ import { convertMoneyToNumber, formatMoney } from 'src/libs/utils';
 import Button from 'src/components/material/Button';
 import { Icon } from 'src/components/icons';
 import { useAPISelectedProductContext } from 'src/modules/selling/selectedProductContext/provider';
+import CheckinPermission from 'src/components/CheckinPermission';
+import { ActionEnum } from 'src/types/user';
 
 export type FilterProductRequest = {
   totalQuantity: number;
@@ -183,36 +185,39 @@ function Bill() {
               </Grid>
             </Grid>
 
-            <Box display='flex' justifyContent='flex-end' gap={SPACING.md}>
-              <Button
-                startIcon={<Icon name='delete' />}
-                variant='contained'
-                color='error'
-                onClick={handleCancel}
-                size='small'
-              >
-                {t('Hủy')}
-              </Button>
-              <Button
-                startIcon={<Icon name='save' />}
-                variant='contained'
-                color='secondary'
-                onClick={methods.handleSubmit(onSubmit)}
-                size='small'
-              >
-                {t('Lưu hóa đơn tạm')}
-              </Button>
+            <CheckinPermission actions={[ActionEnum.CREATE, ActionEnum.UPDATE, ActionEnum.DELETE]}>
+              <Box display='flex' justifyContent='flex-end' gap={SPACING.md}>
+                <Button
+                  startIcon={<Icon name='delete' />}
+                  variant='contained'
+                  color='error'
+                  onClick={handleCancel}
+                  size='small'
+                >
+                  {t('Hủy')}
+                </Button>
 
-              <Button
-                startIcon={<Icon name='print' />}
-                variant='contained'
-                color='primary'
-                size='small'
-                onClick={methods.handleSubmit(onSubmit)}
-              >
-                {t('Xuất hóa đơn')}
-              </Button>
-            </Box>
+                <Button
+                  startIcon={<Icon name='save' />}
+                  variant='contained'
+                  color='secondary'
+                  onClick={methods.handleSubmit(onSubmit)}
+                  size='small'
+                >
+                  {t('Lưu hóa đơn tạm')}
+                </Button>
+
+                <Button
+                  startIcon={<Icon name='print' />}
+                  variant='contained'
+                  color='primary'
+                  size='small'
+                  onClick={methods.handleSubmit(onSubmit)}
+                >
+                  {t('Xuất hóa đơn')}
+                </Button>
+              </Box>
+            </CheckinPermission>
           </Box>
         </FormProvider>
       </Box>
