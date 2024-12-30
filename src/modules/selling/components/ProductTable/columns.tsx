@@ -22,6 +22,14 @@ const useColumns = () => {
       minWidth: 450,
     },
     {
+      field: 'amount',
+      headerName: t('Số lượng'),
+      minWidth: 50,
+      renderCell: ({ row }) => {
+        return <Typography>{row.amount}</Typography>;
+      },
+    },
+    {
       field: 'unit',
       headerName: t('Đơn vị tính'),
       renderCell: ({ row }) => {
@@ -34,7 +42,7 @@ const useColumns = () => {
       renderCell: ({ row }) => {
         return <Typography color='green'>{formatMoney(row.price)}</Typography>;
       },
-      width: 150,
+      width: 100,
     },
   ];
 
