@@ -1,12 +1,10 @@
-import { Box, Paper } from '@mui/material';
+import { Box } from '@mui/material';
 import { useEffect } from 'react';
 import Table from 'src/components/material/Table';
 import { useData } from 'src/context/dataContext/hooksContext';
 import { useAPIDataContext } from 'src/context/dataContext/provider';
-import { useAPIFilterContext } from 'src/context/filterContext/provider';
-import useColumns from './columns';
 import { useSelectedProduct } from 'src/modules/selling/selectedProductContext/hooksContext';
-import { DataGrid } from '@mui/x-data-grid/DataGrid';
+import useColumns from './columns';
 
 const SelectedProductsContent = () => {
   const { columns } = useColumns();
