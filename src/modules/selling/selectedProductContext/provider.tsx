@@ -45,6 +45,9 @@ const reducer = (state: State, action: Actions): State => {
         ),
       };
     }
+    case ActionsTypes.ON_CLEAR_PRODUCT: {
+      return { ...state, selectedProducts: [] };
+    }
 
     default:
       return state;
@@ -72,10 +75,15 @@ export const SelectedProductContextProvider = ({ children }: { children: React.R
       dispatch({ type: ActionsTypes.ON_REMOVE_PRODUCT, payload });
     };
 
+    const onClearProduct = () => {
+      dispatch({ type: ActionsTypes.ON_CLEAR_PRODUCT });
+    };
+
     return {
       onSelectedProduct,
       onUpdateQuantity,
       onRemoveProduct,
+      onClearProduct,
     };
   }, []);
 

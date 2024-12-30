@@ -12,6 +12,8 @@ import DropdownField from 'src/components/material/form/DropdownField';
 import { PaymentMethod, PaymentOptions } from 'src/types/payment';
 import { convertMoneyToNumber, formatMoney } from 'src/libs/utils';
 import Button from 'src/components/material/Button';
+import { Icon } from 'src/components/icons';
+import { useAPISelectedProductContext } from 'src/modules/selling/selectedProductContext/provider';
 
 export type FilterProductRequest = {
   totalQuantity: number;
@@ -47,6 +49,7 @@ function Bill() {
   });
   const { t } = useTranslation('sign-in');
   const selectedProducts = useSelectedProduct();
+  const { onClearProduct } = useAPISelectedProductContext();
 
   const totalQuantity = selectedProducts.reduce((acc, product) => acc + product.quantity, 0);
   const totalPrice = selectedProducts.reduce(
@@ -54,25 +57,35 @@ function Bill() {
     0,
   );
   const amountPaid = convertMoneyToNumber(methods.getValues('amountPaid'));
-  const amountChange = amountPaid - totalPrice;
+  let amountChange = amountPaid - totalPrice;
 
   const onSubmit = (data: FilterProductRequest) => {
     console.log(data);
+  };
+
+  const handleCancel = () => {
+    methods.reset();
+    onClearProduct();
   };
 
   useEffect(() => {
     methods.setValue('totalQuantity', totalQuantity);
     methods.setValue('totalPrice', totalPrice.toString());
     methods.setValue('amountPaid', amountPaid.toString());
-    methods.setValue('amountChange', amountChange.toString());
+    methods.setValue('amountChange', amountChange < 0 ? '0' : amountChange.toString());
   }, [totalQuantity, totalPrice, amountPaid, amountChange, methods]);
 
   return (
     <Box component={Paper} p={PADDING.md}>
       <Box component='form'>
         <FormProvider {...methods}>
-          <Box component='form' onSubmit={methods.handleSubmit(onSubmit)}>
-            <Grid container display='flex' gap={SPACING.sm}>
+          <Box
+            component='form'
+            onSubmit={methods.handleSubmit(onSubmit)}
+            display='grid'
+            gap={SPACING.md}
+          >
+            <Grid container display='flex' gap={SPACING.md}>
               <Grid item md={12}>
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
@@ -83,12 +96,14 @@ function Bill() {
                         name='totalQuantity'
                         label={t('Tổng số lượng')}
                       />
+
                       <FormTextField
                         variant='outlined'
                         size='small'
                         name='discountCode'
                         label={t('Mã giảm giá (nếu có)')}
                       />
+
                       <DropdownField
                         name='paymentMethod'
                         variant='outlined'
@@ -104,7 +119,7 @@ function Bill() {
                         sizeField='small'
                         name='amountPaid'
                         label={t('Số tiền khách trả')}
-                        onKeyDown={(e: any) => {
+                        onChange={(e: any) => {
                           if (e.key === 'Enter') {
                             const value = e.target.value;
                             const totalPrice = convertMoneyToNumber(
@@ -124,9 +139,28 @@ function Bill() {
                               const amountPaid = convertMoneyToNumber(`${value}`);
                               const amountChange = amountPaid - totalPrice;
 
+                              console.log({ amountChange, amountPaid, value });
+                              console.log(amountChange < 0 ? '0' : `${amountChange}`);
+
                               methods.setValue('amountPaid', `${amountPaid}`);
-                              methods.setValue('amountChange', `-${amountChange}`);
+                              methods.setValue(
+                                'amountChange',
+                                amountChange < 0 ? '0' : `${amountChange}`,
+                              );
                             }
+                          }
+                        }}
+                        onKeyDown={(e: any) => {
+                          if (e.key === 'Enter') {
+                            const value = e.target.value;
+                            const totalPrice = convertMoneyToNumber(
+                              methods.getValues('totalPrice'),
+                            );
+                            const amountPaid = convertMoneyToNumber(`${value},000`);
+                            const amountChange = amountPaid - totalPrice;
+
+                            methods.setValue('amountPaid', `${value},000`);
+                            methods.setValue('amountChange', `${formatMoney(amountChange)}`);
                           }
                         }}
                       />
@@ -164,9 +198,34 @@ function Bill() {
               </Grid>
             </Grid>
 
-            <Box display='flex' justifyContent='flex-end'>
-              <Button variant='contained' color='primary' onClick={methods.handleSubmit(onSubmit)}>
-                {t('Tạo hóa đơn')}
+            <Box display='flex' justifyContent='flex-end' gap={SPACING.md}>
+              <Button
+                startIcon={<Icon name='delete' />}
+                variant='contained'
+                color='error'
+                onClick={handleCancel}
+                size='small'
+              >
+                {t('Hủy')}
+              </Button>
+              <Button
+                startIcon={<Icon name='save' />}
+                variant='contained'
+                color='secondary'
+                onClick={methods.handleSubmit(onSubmit)}
+                size='small'
+              >
+                {t('Lưu hóa đơn tạm')}
+              </Button>
+
+              <Button
+                startIcon={<Icon name='print' />}
+                variant='contained'
+                color='primary'
+                size='small'
+                onClick={methods.handleSubmit(onSubmit)}
+              >
+                {t('Xuất hóa đơn')}
               </Button>
             </Box>
           </Box>

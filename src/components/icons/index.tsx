@@ -33,6 +33,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import DeleteIcon from '@mui/icons-material/Delete';
+import PrintIcon from '@mui/icons-material/Print';
+import SaveIcon from '@mui/icons-material/Save';
 
 import { Plus } from './plus';
 import { RemoveIcon } from './remove';
@@ -78,6 +80,8 @@ const icons = {
   unlock: LockOpenIcon,
   up: ArrowUpwardIcon,
   delete: DeleteIcon,
+  print: PrintIcon,
+  save: SaveIcon,
 
   // Custom Icon
   'user-interface': UserInterface,

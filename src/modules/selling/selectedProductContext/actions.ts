@@ -4,6 +4,7 @@ export enum ActionsTypes {
   ON_SELECTED_PRODUCT = 'ON_SELECTED_PRODUCT',
   ON_UPDATE_QUANTITY = 'ON_UPDATE_QUANTITY',
   ON_REMOVE_PRODUCT = 'ON_REMOVE_PRODUCT',
+  ON_CLEAR_PRODUCT = 'ON_CLEAR_PRODUCT',
 }
 
 export type Actions =
@@ -23,12 +24,16 @@ export type Actions =
       payload: {
         id: string;
       };
+    }
+  | {
+      type: ActionsTypes.ON_CLEAR_PRODUCT;
     };
 
 export type API = {
   onSelectedProduct: (data: Product) => void;
   onUpdateQuantity: (data: { id: string; amount: number }) => void;
   onRemoveProduct: (data: { id: string }) => void;
+  onClearProduct: () => void;
 };
 
 export interface State {

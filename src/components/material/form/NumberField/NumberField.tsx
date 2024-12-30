@@ -17,7 +17,10 @@ const NumberField = (props: Props) => {
             error={invalid || others.error}
             helperText={invalid ? error?.message || '' : helperText}
             value={value || ''}
-            onChange={onChange}
+            onChange={(e) => {
+              onChange(e);
+              others.onChange?.(e);
+            }}
             onBlur={onBlur}
           />
         );
