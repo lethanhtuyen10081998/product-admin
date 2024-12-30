@@ -28,11 +28,7 @@ const TableAgencyContainer = (props: Props) => {
     onUpdateLoading(isFetching);
   }, [isFetching, onUpdateLoading]);
 
-  return (
-    <DataContextProvider onGetData={refetch} data={data} total={total}>
-      <Table {...props} />
-    </DataContextProvider>
-  );
+  return <Table {...props} />;
 };
 
 export default TableAgencyContainer;

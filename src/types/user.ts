@@ -29,16 +29,16 @@ export enum UserRole {
   SUPER_ADMIN = 'super_admin',
 }
 
-export const ModulesName = {
-  USER: 'user',
-  ROLE: 'role',
-  PERMISSION: 'permission',
-  ORDER: 'order',
-  PRODUCT: 'product',
-  SELL: 'sell',
-  DASHBOARD: 'dashboard',
-  PERMISSION_MANAGEMENT: 'permission_management',
-};
+export enum ModulesName {
+  USER = 'user',
+  ROLE = 'role',
+  PERMISSION = 'permission',
+  ORDER = 'order',
+  PRODUCT = 'product',
+  SELL = 'sell',
+  DASHBOARD = 'dashboard',
+  PERMISSION_MANAGEMENT = 'permission_management',
+}
 
 export const ActionForModules = {
   USER: ['create', 'update', 'delete'],

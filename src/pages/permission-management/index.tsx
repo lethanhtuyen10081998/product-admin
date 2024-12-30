@@ -22,11 +22,9 @@ const Page = () => {
       <Head>
         <title>{t('title')}</title>
       </Head>
-      <FilterContextProvider>
-        <Box display='grid'>
-          <PermissionManagement />
-        </Box>
-      </FilterContextProvider>
+      <Box display='grid'>
+        <PermissionManagement />
+      </Box>
     </>
   );
 };

@@ -1,29 +1,22 @@
-import MailIcon from '@mui/icons-material/Mail';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { Paper } from '@mui/material';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
+import useTranslation from 'next-translate/useTranslation';
 import * as React from 'react';
 import { Icon } from 'src/components/icons';
 import { Routes } from 'src/constants/route';
-import Header from './header/header';
-import Navigation from './navigation/navigation';
-import { LayoutContextProvider } from 'src/context/layoutContext/provider';
-import { Paper } from '@mui/material';
-import { ProfileContextProvider } from 'src/context/profileContext/provider';
-import { DrawerItemProps } from './navigation/components/drawerItem/types';
-import useTranslation from 'next-translate/useTranslation';
+import { DataContextProvider } from 'src/context/dataContext/provider';
+import { FilterContextProvider } from 'src/context/filterContext/provider';
 import { useCollapsible } from 'src/context/layoutContext/hooksContext';
-import { PermissionContextProvider } from 'src/context/permissionContext/provider';
+import { LayoutContextProvider } from 'src/context/layoutContext/provider';
 import { usePermissionContext } from 'src/context/permissionContext/hooksContext';
-import { ActionForModules, ModulesName } from 'src/types/user';
+import { PermissionContextProvider } from 'src/context/permissionContext/provider';
+import { ProfileContextProvider } from 'src/context/profileContext/provider';
+import { ModulesName } from 'src/types/user';
+import Header from './header/header';
+import { DrawerItemProps } from './navigation/components/drawerItem/types';
+import Navigation from './navigation/navigation';
 
 interface Props {
   window?: () => Window;
@@ -56,7 +49,7 @@ function ResponsiveDrawer(props: Props) {
 
     {
       icon: <Icon name='group' />,
-      route: Routes.SELL,
+      route: Routes.SELLING,
       title: t('menu.sell'),
       subItems: [],
       module: ModulesName.SELL,
@@ -137,6 +130,7 @@ function ResponsiveDrawer(props: Props) {
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           minHeight: '100vh',
+          background: '#ebf7f7',
         }}
       >
         <Toolbar />
@@ -149,11 +143,15 @@ function ResponsiveDrawer(props: Props) {
 const MainLayoutContainer = (props: Props) => {
   return (
     <PermissionContextProvider>
-      <ProfileContextProvider>
-        <LayoutContextProvider>
-          <ResponsiveDrawer {...props} />
-        </LayoutContextProvider>
-      </ProfileContextProvider>
+      <FilterContextProvider>
+        <DataContextProvider>
+          <ProfileContextProvider>
+            <LayoutContextProvider>
+              <ResponsiveDrawer {...props} />
+            </LayoutContextProvider>
+          </ProfileContextProvider>
+        </DataContextProvider>
+      </FilterContextProvider>
     </PermissionContextProvider>
   );
 };

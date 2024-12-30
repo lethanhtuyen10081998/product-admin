@@ -11,10 +11,9 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Checkbox,
-  FormControlLabel,
 } from '@mui/material';
 import { UserRole } from 'src/types/user';
+import PermissionsCheckbox from './components/PermissionsCheckbox';
 
 // Sample data
 const modules = ['Dashboard', 'Users', 'Products', 'Orders', 'Reports', 'Settings', 'Sell'];
@@ -45,7 +44,7 @@ export default function UserPermissions() {
           </TableHead>
           <TableBody>
             {filteredUsers.map((user) => (
-              <TableRow key={user.id} hover>
+              <TableRow key={user.id} hover sx={{ py: 2 }}>
                 <TableCell>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Box>
@@ -55,16 +54,9 @@ export default function UserPermissions() {
                   </Box>
                 </TableCell>
                 {modules.map((module) => (
-                  <TableCell key={`${user.id}-${module}`}>
+                  <TableCell sx={{ py: 2 }} key={`${user.id}-${module}`}>
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                      {permissions.map((permission) => (
-                        <Box key={`${user.id}-${module}-${permission}`}>
-                          <FormControlLabel
-                            control={<Checkbox size='small' sx={{ p: 0.5 }} />}
-                            label={permission}
-                          />
-                        </Box>
-                      ))}
+                      <PermissionsCheckbox module={module} permissions={permissions} />
                     </Box>
                   </TableCell>
                 ))}

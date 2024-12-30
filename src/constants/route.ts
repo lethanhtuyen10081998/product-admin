@@ -8,6 +8,6 @@ export const Routes = {
   ORDER_LIST: '/orders',
   ORDER: '/orders',
   ORDER_DETAIL: '/orders/{id}',
-  SELL: '/sell',
+  SELLING: '/selling',
   PRODUCT_LIST: '/products',
 };

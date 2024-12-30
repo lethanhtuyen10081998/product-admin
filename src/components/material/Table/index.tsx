@@ -11,12 +11,11 @@ export default function DataTable(props: DataGridProps & { title?: string }) {
           <Typography variant='h4'>{props.title}</Typography>
         </Box>
       )}
-
       <DataGrid
         components={{
           LoadingOverlay: LinearProgress,
         }}
-        paginationMode='server'
+        paginationMode='client'
         autoHeight
         disableSelectionOnClick
         checkboxSelection
