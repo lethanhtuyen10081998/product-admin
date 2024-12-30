@@ -32,6 +32,7 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { Plus } from './plus';
 import { RemoveIcon } from './remove';
@@ -76,6 +77,7 @@ const icons = {
   lock: LockIcon,
   unlock: LockOpenIcon,
   up: ArrowUpwardIcon,
+  delete: DeleteIcon,
 
   // Custom Icon
   'user-interface': UserInterface,

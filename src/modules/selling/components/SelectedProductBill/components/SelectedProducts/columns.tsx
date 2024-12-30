@@ -1,17 +1,34 @@
-import { Typography } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
 import { GridColumns } from '@mui/x-data-grid';
 import useTranslation from 'next-translate/useTranslation';
+import { Icon } from 'src/components/icons';
 import { formatMoney } from 'src/libs/utils';
+import { useAPISelectedProductContext } from 'src/modules/selling/selectedProductContext/provider';
 
 const useColumns = () => {
   const { t } = useTranslation();
+  const { onRemoveProduct } = useAPISelectedProductContext();
 
   const columns: GridColumns<any> = [
+    {
+      field: 'action',
+      headerName: t(''),
+      minWidth: 50,
+      align: 'center',
+      renderCell: ({ row }) => {
+        return (
+          <IconButton size='small' onClick={() => onRemoveProduct({ id: row.id })}>
+            <Icon sx={{ color: 'error.main' }} name='delete' />
+          </IconButton>
+        );
+      },
+    },
     {
       field: 'id',
       headerName: t('Mã SP'),
       minWidth: 100,
       align: 'center',
+      headerAlign: 'center',
       renderCell: ({ row }) => {
         return <Typography>{row.id}</Typography>;
       },
@@ -20,6 +37,7 @@ const useColumns = () => {
       field: 'idCode',
       align: 'center',
       headerName: t('Mã vạch'),
+      headerAlign: 'center',
       minWidth: 100,
       renderCell: ({ row }) => {
         return <Typography>{row.idCode}</Typography>;
@@ -28,11 +46,12 @@ const useColumns = () => {
     {
       field: 'name',
       headerName: t('Tên sản phẩm'),
-      minWidth: 250,
+      minWidth: 200,
     },
     {
       field: 'quantity',
       headerName: t('Số lượng'),
+      headerAlign: 'center',
       editable: true,
       align: 'center',
       type: 'number',
@@ -46,12 +65,14 @@ const useColumns = () => {
       align: 'center',
       field: 'unit',
       headerName: t('Đơn vị tính'),
+      headerAlign: 'center',
       renderCell: ({ row }) => {
         return <Typography color='primary'>{row.unit}</Typography>;
       },
     },
     {
       field: 'price',
+      headerAlign: 'center',
       headerName: t('Đơn giá'),
       renderCell: ({ row }) => {
         return <Typography color='green'>{formatMoney(row.price)}</Typography>;

@@ -37,6 +37,14 @@ const reducer = (state: State, action: Actions): State => {
         }),
       };
     }
+    case ActionsTypes.ON_REMOVE_PRODUCT: {
+      return {
+        ...state,
+        selectedProducts: state.selectedProducts.filter(
+          (product) => product.id != action.payload.id,
+        ),
+      };
+    }
 
     default:
       return state;
@@ -60,9 +68,14 @@ export const SelectedProductContextProvider = ({ children }: { children: React.R
       dispatch({ type: ActionsTypes.ON_UPDATE_QUANTITY, payload });
     };
 
+    const onRemoveProduct = (payload: { id: string }) => {
+      dispatch({ type: ActionsTypes.ON_REMOVE_PRODUCT, payload });
+    };
+
     return {
       onSelectedProduct,
       onUpdateQuantity,
+      onRemoveProduct,
     };
   }, []);
 
