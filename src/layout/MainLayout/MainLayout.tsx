@@ -1,22 +1,31 @@
-import { Paper } from '@mui/material';
+import MailIcon from '@mui/icons-material/Mail';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
 import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
-import useTranslation from 'next-translate/useTranslation';
 import * as React from 'react';
 import { Icon } from 'src/components/icons';
 import { Routes } from 'src/constants/route';
+import Header from './header/header';
+import Navigation from './navigation/navigation';
+import { LayoutContextProvider } from 'src/context/layoutContext/provider';
+import { Paper } from '@mui/material';
+import { ProfileContextProvider } from 'src/context/profileContext/provider';
+import { DrawerItemProps } from './navigation/components/drawerItem/types';
+import useTranslation from 'next-translate/useTranslation';
 import { DataContextProvider } from 'src/context/dataContext/provider';
 import { FilterContextProvider } from 'src/context/filterContext/provider';
-import { useCollapsible } from 'src/context/layoutContext/hooksContext';
-import { LayoutContextProvider } from 'src/context/layoutContext/provider';
-import { usePermissionContext } from 'src/context/permissionContext/hooksContext';
 import { PermissionContextProvider } from 'src/context/permissionContext/provider';
-import { ProfileContextProvider } from 'src/context/profileContext/provider';
+import { useCollapsible } from 'src/context/layoutContext/hooksContext';
+import { usePermissionContext } from 'src/context/permissionContext/hooksContext';
 import { ModulesName } from 'src/types/user';
-import Header from './header/header';
-import { DrawerItemProps } from './navigation/components/drawerItem/types';
-import Navigation from './navigation/navigation';
 
 interface Props {
   window?: () => Window;
@@ -71,16 +80,45 @@ function ResponsiveDrawer(props: Props) {
       module: ModulesName.PERMISSION_MANAGEMENT,
     },
   ];
-  const { children } = props;
 
   drawerItems = drawerItems.filter((item) =>
     permissions.some(
       (permission) => permission.module === item.module && permission.actions.length > 0,
     ),
   );
+  const { children } = props;
+
+  const drawer = (
+    <div>
+      <Toolbar />
+      <Divider />
+      <List>
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
 
   return (
     <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
       <Box
         position='fixed'
         sx={{
@@ -89,24 +127,41 @@ function ResponsiveDrawer(props: Props) {
           transition: 'width 0.3s ease-in-out, margin-left 0.3s ease-in-out',
           transform: 'translate3d(0, 0, 0)',
           ml: { sm: `${drawerWidth + 24}px` },
+          background: '#eaeff1',
           zIndex: 1000,
         }}
       >
-        <Box mt={3} component={Paper}>
+        <Box
+          mt={3}
+          sx={{
+            backgroundColor: (theme) => theme.palette.common.white,
+          }}
+          component={Paper}
+        >
           <Header />
         </Box>
       </Box>
 
       <Box
         component='nav'
-        sx={{
-          width: { sm: drawerWidth },
-          flexShrink: { sm: 0 },
-          transition: 'width 0.3s ease-in-out, margin-left 0.3s ease-in-out',
-          transform: 'translate3d(0, 0, 0)',
-        }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label='mailbox folders'
       >
+        <Drawer
+          variant='temporary'
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
         <Drawer
           variant='permanent'
           sx={{
@@ -114,8 +169,6 @@ function ResponsiveDrawer(props: Props) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              transition: 'width 0s ease-in-out, margin-left 2s ease-in-out',
-              transform: 'translate3d(0, 0, 0)',
             },
           }}
           open
@@ -129,8 +182,8 @@ function ResponsiveDrawer(props: Props) {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          background: '#eaeff1',
           minHeight: '100vh',
-          background: '#ebf7f7',
         }}
       >
         <Toolbar />
@@ -139,7 +192,6 @@ function ResponsiveDrawer(props: Props) {
     </Box>
   );
 }
-
 const MainLayoutContainer = (props: Props) => {
   return (
     <PermissionContextProvider>
