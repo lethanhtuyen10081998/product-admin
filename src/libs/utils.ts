@@ -76,7 +76,7 @@ export const getLinkImage = (image: string) => {
   return `${process.env.NEXT_PUBLIC_IMAGE_ENDPOINT}/${image}.png`;
 };
 
-export function convertMoneyToNumber(stringWithCommas: string): number {
+export function convertMoneyToNumber(stringWithCommas = '0'): number {
   // Remove all commas from the string
   const stringWithoutCommas = stringWithCommas.replace(/,/g, '');
   // Convert the resulting string to a number

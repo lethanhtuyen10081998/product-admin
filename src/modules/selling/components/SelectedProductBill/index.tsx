@@ -13,3 +13,5 @@ const SelectedProductBill = () => {
 };
 
 export { SelectedProductBill };
+
+export default SelectedProductBill;

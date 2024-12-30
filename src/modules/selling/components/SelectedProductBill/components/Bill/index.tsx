@@ -9,26 +9,41 @@ import FormTextField from 'src/components/material/form/FormTextField';
 import { useSelectedProduct } from 'src/modules/selling/selectedProductContext/hooksContext';
 import { useEffect } from 'react';
 import DropdownField from 'src/components/material/form/DropdownField';
-import { PaymentOptions } from 'src/types/payment';
+import { PaymentMethod, PaymentOptions } from 'src/types/payment';
+import { convertMoneyToNumber, formatMoney } from 'src/libs/utils';
+import Button from 'src/components/material/Button';
 
 export type FilterProductRequest = {
   totalQuantity: number;
   totalPrice: string;
   discountCode: string;
-  discountAmount: number;
+  discountAmount: string;
   discountType: string;
   discountReason: string;
   paymentMethod: string;
   paymentStatus: string;
   note: string;
-  amountPaid: number; // tiền đã thanh toán
-  amountChange: number;
+  amountPaid: string; // tiền đã thanh toán
+  amountChange: string;
 };
 
 function Bill() {
   const resolver = useYupValidationResolver(validation);
   const methods = useForm<FilterProductRequest>({
     resolver,
+    defaultValues: {
+      totalQuantity: 0,
+      totalPrice: '0',
+      paymentMethod: PaymentMethod.CASH,
+      amountPaid: '0',
+      amountChange: '0',
+      discountCode: '',
+      discountAmount: '0',
+      discountType: '',
+      discountReason: '',
+      paymentStatus: '',
+      note: '',
+    },
   });
   const { t } = useTranslation('sign-in');
   const selectedProducts = useSelectedProduct();
@@ -38,83 +53,124 @@ function Bill() {
     (acc, product) => acc + product.price * product.quantity,
     0,
   );
+  const amountPaid = convertMoneyToNumber(methods.getValues('amountPaid'));
+  const amountChange = amountPaid - totalPrice;
+
+  const onSubmit = (data: FilterProductRequest) => {
+    console.log(data);
+  };
 
   useEffect(() => {
     methods.setValue('totalQuantity', totalQuantity);
     methods.setValue('totalPrice', totalPrice.toString());
-  }, [totalQuantity, totalPrice, methods]);
+    methods.setValue('amountPaid', amountPaid.toString());
+    methods.setValue('amountChange', amountChange.toString());
+  }, [totalQuantity, totalPrice, amountPaid, amountChange, methods]);
 
   return (
     <Box component={Paper} p={PADDING.md}>
       <Box component='form'>
         <FormProvider {...methods}>
-          <Grid container display='flex' gap={SPACING.sm}>
-            <Grid item md={12}>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <Box display='flex' flexDirection='column' gap={SPACING.sm}>
-                    <FormTextField
-                      variant='outlined'
-                      size='small'
-                      name='totalQuantity'
-                      label={t('Tổng số lượng')}
-                    />
-                    <FormTextField
-                      variant='outlined'
-                      size='small'
-                      name='discountCode'
-                      label={t('Mã giảm giá (nếu có)')}
-                    />
+          <Box component='form' onSubmit={methods.handleSubmit(onSubmit)}>
+            <Grid container display='flex' gap={SPACING.sm}>
+              <Grid item md={12}>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <Box display='flex' flexDirection='column' gap={SPACING.sm}>
+                      <FormTextField
+                        variant='outlined'
+                        size='small'
+                        name='totalQuantity'
+                        label={t('Tổng số lượng')}
+                      />
+                      <FormTextField
+                        variant='outlined'
+                        size='small'
+                        name='discountCode'
+                        label={t('Mã giảm giá (nếu có)')}
+                      />
+                      <DropdownField
+                        name='paymentMethod'
+                        variant='outlined'
+                        size='small'
+                        label={t('Phương thức thanh toán')}
+                        options={PaymentOptions}
+                        getItemLabel={(item) => item.label}
+                        getItemValue={(item) => item.value}
+                      />
 
-                    <DropdownField
-                      name='paymentMethod'
-                      variant='outlined'
-                      size='small'
-                      label={t('Phương thức thanh toán')}
-                      options={PaymentOptions}
-                      getItemLabel={(item) => item.label}
-                      getItemValue={(item) => item.value}
-                    />
+                      <NumberField
+                        variant='outlined'
+                        sizeField='small'
+                        name='amountPaid'
+                        label={t('Số tiền khách trả')}
+                        onKeyDown={(e: any) => {
+                          if (e.key === 'Enter') {
+                            const value = e.target.value;
+                            const totalPrice = convertMoneyToNumber(
+                              methods.getValues('totalPrice'),
+                            );
+                            const amountPaid = convertMoneyToNumber(`${value},000`);
+                            const amountChange = amountPaid - totalPrice;
 
-                    <FormTextField
-                      variant='outlined'
-                      size='small'
-                      name='amountPaid'
-                      label={t('Số tiền đã trả')}
-                    />
-                  </Box>
-                </Grid>
-                <Grid item xs={6}>
-                  <Box display='flex' flexDirection='column' gap={SPACING.sm}>
-                    <NumberField
-                      variant='outlined'
-                      name='totalPrice'
-                      label={t('Tổng tiền')}
-                      sizeField='small'
-                    />
-                    <FormTextField
-                      variant='outlined'
-                      size='small'
-                      name='discountAmount'
-                      label={t('Số tiền giảm')}
-                    />
-                    <FormTextField
-                      size='small'
-                      variant='outlined'
-                      name='paymentStatus'
-                      label={t('Trạng thái thanh toán')}
-                    />
-                    <FormTextField
-                      size='small'
-                      variant='outlined'
-                      name='amountChange'
-                      label={t('Tiền thối lại')}
-                    />
-                  </Box>
+                            methods.setValue('amountPaid', `${value},000`);
+                            methods.setValue('amountChange', `${formatMoney(amountChange)}`);
+                          } else {
+                            const value = e.target.value || '';
+                            if (value) {
+                              const totalPrice = convertMoneyToNumber(
+                                methods.getValues('totalPrice'),
+                              );
+                              const amountPaid = convertMoneyToNumber(`${value}`);
+                              const amountChange = amountPaid - totalPrice;
+                              console.log({ amountPaid, totalPrice, amountChange });
+
+                              methods.setValue('amountPaid', `${amountPaid}`);
+                              methods.setValue('amountChange', `-${amountChange}`);
+                            }
+                          }
+                        }}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Box display='flex' flexDirection='column' gap={SPACING.sm}>
+                      <NumberField
+                        variant='outlined'
+                        name='totalPrice'
+                        label={t('Tổng tiền')}
+                        sizeField='small'
+                      />
+                      <FormTextField
+                        variant='outlined'
+                        size='small'
+                        name='discountAmount'
+                        label={t('Số tiền giảm')}
+                      />
+                      <FormTextField
+                        size='small'
+                        variant='outlined'
+                        name='paymentStatus'
+                        label={t('Trạng thái thanh toán')}
+                      />
+                      <NumberField
+                        sizeField='small'
+                        variant='outlined'
+                        name='amountChange'
+                        label={t('Tiền thối lại')}
+                      />
+                    </Box>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
+
+            <Box display='flex' justifyContent='flex-end'>
+              <Button variant='contained' color='primary' onClick={methods.handleSubmit(onSubmit)}>
+                {t('Tạo hóa đơn')}
+              </Button>
+            </Box>
+          </Box>
         </FormProvider>
       </Box>
     </Box>

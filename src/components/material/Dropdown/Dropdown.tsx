@@ -31,25 +31,7 @@ const Dropdown = <E extends unknown = string | number>(props: Props<E>) => {
   }, [options]);
 
   return (
-    <FormControl
-      sx={{
-        '& .MuiOutlinedInput-root:hover': {
-          '& > fieldset': {
-            borderColor: 'primary.main',
-          },
-        },
-        '& .MuiOutlinedInput-notchedOutline': {
-          paddingLeft: '33px',
-        },
-        '& .MuiInputLabel-root': {
-          top: others.size === 'small' ? '-8px' : '0px',
-        },
-      }}
-      variant={others.variant || 'standard'}
-      fullWidth
-      error={!!error}
-      {...controlProps}
-    >
+    <FormControl variant={others.variant || 'standard'} fullWidth error={!!error} {...controlProps}>
       <InputLabel {...labelProps}>{label}</InputLabel>
 
       <Select label={label} fullWidth {...others}>

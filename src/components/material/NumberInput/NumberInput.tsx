@@ -21,10 +21,6 @@ const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(function TextM
       mask={Number}
       signed={false}
       thousandsSeparator=','
-      normalizeZeros={true}
-      padFractionalZeros={true}
-      scale={0}
-      autofix={true}
       definitions={{
         '#': /[1-9]/,
       }}

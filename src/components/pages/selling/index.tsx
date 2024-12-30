@@ -3,7 +3,14 @@ import Box from '@mui/material/Box';
 import { SPACING } from 'src/constants/grid';
 import { DataContextProvider } from 'src/context/dataContext/provider';
 import { ProductTable } from 'src/modules/selling';
-import { SelectedProductBill } from 'src/modules/selling/components/SelectedProductBill';
+import dynamic from 'next/dynamic';
+
+const SelectedProductBill = dynamic(
+  () => import('../../../modules/selling/components/SelectedProductBill'),
+  {
+    ssr: false,
+  },
+);
 
 const SellingPage = () => {
   return (
