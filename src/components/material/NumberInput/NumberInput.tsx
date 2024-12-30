@@ -24,8 +24,6 @@ const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(function TextM
       normalizeZeros={true}
       padFractionalZeros={true}
       scale={0}
-      min={100000}
-      max={1000000000000}
       autofix={true}
       definitions={{
         '#': /[1-9]/,

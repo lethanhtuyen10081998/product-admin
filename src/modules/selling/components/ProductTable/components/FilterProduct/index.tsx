@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Icon } from 'src/components/icons';
 import FormTextField from 'src/components/material/form/FormTextField';
 import NumberField from 'src/components/material/form/NumberField';
-import { SPACING } from 'src/constants/grid';
+import { PADDING, SPACING } from 'src/constants/grid';
 import useYupValidationResolver from 'src/helpers/useYupValidationResolver';
 import { validation } from './validation';
 
@@ -21,7 +21,7 @@ function FilterProduct() {
   const { t } = useTranslation('sign-in');
 
   return (
-    <Box component={Paper} p={SPACING.md}>
+    <Box component={Paper} p={PADDING.md}>
       <Box component='form'>
         <FormProvider {...methods}>
           <Box display='flex' gap={SPACING.sm}>

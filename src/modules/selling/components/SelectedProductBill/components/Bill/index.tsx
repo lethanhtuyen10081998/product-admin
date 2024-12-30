@@ -2,12 +2,14 @@ import { Box, Paper, Typography, Grid } from '@mui/material';
 import useTranslation from 'next-translate/useTranslation';
 import { FormProvider, useForm } from 'react-hook-form';
 import NumberField from 'src/components/material/form/NumberField';
-import { SPACING } from 'src/constants/grid';
+import { PADDING, SPACING } from 'src/constants/grid';
 import useYupValidationResolver from 'src/helpers/useYupValidationResolver';
 import { validation } from './validation';
 import FormTextField from 'src/components/material/form/FormTextField';
 import { useSelectedProduct } from 'src/modules/selling/selectedProductContext/hooksContext';
 import { useEffect } from 'react';
+import DropdownField from 'src/components/material/form/DropdownField';
+import { PaymentOptions } from 'src/types/payment';
 
 export type FilterProductRequest = {
   totalQuantity: number;
@@ -43,7 +45,7 @@ function Bill() {
   }, [totalQuantity, totalPrice, methods]);
 
   return (
-    <Box component={Paper} p={SPACING.md}>
+    <Box component={Paper} p={PADDING.md}>
       <Box component='form'>
         <FormProvider {...methods}>
           <Grid container display='flex' gap={SPACING.sm}>
@@ -61,14 +63,19 @@ function Bill() {
                       variant='outlined'
                       size='small'
                       name='discountCode'
-                      label={t('Mã giảm giá')}
+                      label={t('Mã giảm giá (nếu có)')}
                     />
-                    <FormTextField
-                      size='small'
-                      variant='outlined'
+
+                    <DropdownField
                       name='paymentMethod'
+                      variant='outlined'
+                      size='small'
                       label={t('Phương thức thanh toán')}
+                      options={PaymentOptions}
+                      getItemLabel={(item) => item.label}
+                      getItemValue={(item) => item.value}
                     />
+
                     <FormTextField
                       variant='outlined'
                       size='small'

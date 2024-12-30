@@ -9,8 +9,6 @@ import { Props } from './types';
 const getItemDefault = (item: any) => `${item}`;
 
 const Dropdown = <E extends unknown = string | number>(props: Props<E>) => {
-  const theme = useTheme();
-
   const {
     label,
     controlProps,
@@ -33,25 +31,28 @@ const Dropdown = <E extends unknown = string | number>(props: Props<E>) => {
   }, [options]);
 
   return (
-    <FormControl variant='standard' fullWidth error={!!error} {...controlProps}>
+    <FormControl
+      sx={{
+        '& .MuiOutlinedInput-root:hover': {
+          '& > fieldset': {
+            borderColor: 'primary.main',
+          },
+        },
+        '& .MuiOutlinedInput-notchedOutline': {
+          paddingLeft: '33px',
+        },
+        '& .MuiInputLabel-root': {
+          top: others.size === 'small' ? '-8px' : '0px',
+        },
+      }}
+      variant={others.variant || 'standard'}
+      fullWidth
+      error={!!error}
+      {...controlProps}
+    >
       <InputLabel {...labelProps}>{label}</InputLabel>
 
-      <Select
-        label={label}
-        fullWidth
-        {...others}
-        sx={{
-          '& .MuiOutlinedInput-root:hover': {
-            '& > fieldset': {
-              borderColor: 'primary.main',
-            },
-          },
-          '& .MuiOutlinedInput-notchedOutline': {
-            paddingLeft: '33px',
-            borderRadius: theme.shape.borderRadius,
-          },
-        }}
-      >
+      <Select label={label} fullWidth {...others}>
         {itemList.map((item) => {
           const keyValue = getItemValue(item);
           return (
