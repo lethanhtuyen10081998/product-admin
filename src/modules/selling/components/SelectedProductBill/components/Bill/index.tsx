@@ -123,7 +123,6 @@ function Bill() {
                               );
                               const amountPaid = convertMoneyToNumber(`${value}`);
                               const amountChange = amountPaid - totalPrice;
-                              console.log({ amountPaid, totalPrice, amountChange });
 
                               methods.setValue('amountPaid', `${amountPaid}`);
                               methods.setValue('amountChange', `-${amountChange}`);
