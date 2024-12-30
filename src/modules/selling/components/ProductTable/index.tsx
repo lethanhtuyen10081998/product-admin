@@ -7,7 +7,7 @@ import { useAPIDataContext } from 'src/context/dataContext/provider';
 import { useLimit, useLoading, usePage } from 'src/context/filterContext/hooksContext';
 import { useAPIFilterContext } from 'src/context/filterContext/provider';
 import useListProduct from 'src/services/product/getListProduct';
-import { FilterProduct } from '../FilterProduct';
+import { FilterProduct } from './components/FilterProduct';
 import useColumns from './columns';
 
 const ProductTableContent = () => {
