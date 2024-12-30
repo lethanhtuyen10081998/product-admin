@@ -41,6 +41,7 @@ export enum ModulesName {
   STOCK = 'stock',
   IMPORT_STOCK = 'stock.import',
   EXPORT_STOCK = 'stock.export',
+  SUPPLIER = 'supplier',
 }
 
 export enum ActionEnum {

@@ -35,7 +35,7 @@ interface Props {
 function ResponsiveDrawer(props: Props) {
   const { t } = useTranslation('common');
   const collapsible = useCollapsible();
-  const drawerWidth = collapsible ? 90 : 260;
+  const drawerWidth = collapsible ? 110 : 260;
 
   const { permissions } = usePermissionContext();
 
@@ -99,6 +99,14 @@ function ResponsiveDrawer(props: Props) {
         },
       ],
       module: ModulesName.STOCK,
+    },
+
+    {
+      icon: <Icon name='stock' />,
+      route: Routes.SUPPLIER,
+      title: t('Nhà cung cấp'),
+      subItems: [],
+      module: ModulesName.SUPPLIER,
     },
   ];
 

@@ -15,4 +15,7 @@ export const Routes = {
   STOCK: '/stock',
   IMPORT_STOCK: '/stock/import-stock',
   EXPORT_STOCK: '/stock/export-stock',
+
+  // Supplier
+  SUPPLIER: '/supplier',
 };
