@@ -8,7 +8,7 @@ const useColumns = () => {
 
   const columns: GridColumns<any> = [
     {
-      field: 'user.phone',
+      field: 'id',
       headerName: t('Mã sản phẩm'),
       minWidth: 100,
       renderCell: ({ row }) => {
@@ -16,9 +16,24 @@ const useColumns = () => {
       },
     },
     {
+      field: 'idCode',
+      headerName: t('Mã vạch'),
+      minWidth: 100,
+      renderCell: ({ row }) => {
+        return <Typography>{row.idCode}</Typography>;
+      },
+    },
+    {
       field: 'name',
       headerName: t('Tên sản phẩm'),
-      minWidth: 450,
+      minWidth: 250,
+    },
+    {
+      field: 'amount',
+      headerName: t('Số lượng'),
+      renderCell: ({ row }) => {
+        return <Typography color='primary'>{row.amount}</Typography>;
+      },
     },
     {
       field: 'unit',
@@ -29,11 +44,19 @@ const useColumns = () => {
     },
     {
       field: 'price',
-      headerName: t('Giá bán'),
+      headerName: t('Đơn giá'),
       renderCell: ({ row }) => {
         return <Typography color='green'>{formatMoney(row.price)}</Typography>;
       },
-      width: 150,
+      width: 100,
+    },
+    {
+      field: 'total',
+      headerName: t('Thành tiền'),
+      renderCell: ({ row }) => {
+        return <Typography color='green'>{formatMoney(row.price)}</Typography>;
+      },
+      width: 100,
     },
   ];
 

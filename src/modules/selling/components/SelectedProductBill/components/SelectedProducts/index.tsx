@@ -1,36 +1,20 @@
-import { Box } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import { useEffect } from 'react';
 import Table from 'src/components/material/Table';
 import { useData } from 'src/context/dataContext/hooksContext';
 import { useAPIDataContext } from 'src/context/dataContext/provider';
-import { useLimit, useLoading, usePage } from 'src/context/filterContext/hooksContext';
 import { useAPIFilterContext } from 'src/context/filterContext/provider';
-import useListProduct from 'src/services/product/getListProduct';
 import useColumns from './columns';
 import { useSelectedProduct } from 'src/modules/selling/selectedProductContext/hooksContext';
+import { DataGrid } from '@mui/x-data-grid/DataGrid';
 
 const SelectedProductsContent = () => {
-  const limit = useLimit();
-  const page = usePage();
-  const loading = useLoading();
-  const { onUpdateLimit, onUpdatePage } = useAPIFilterContext();
   const { columns } = useColumns();
-  const { rows: data, total } = useData();
+  const { rows: data } = useData();
 
   return (
-    <Box>
-      <Table
-        columns={columns}
-        rows={data}
-        loading={loading}
-        onPageChange={(page) => onUpdatePage(page)}
-        rowCount={total}
-        pageSize={100}
-        page={page - 1}
-        onPageSizeChange={(pageSize) => {
-          onUpdateLimit(pageSize);
-        }}
-      />
+    <Box sx={{ maxHeight: 500 }}>
+      <Table editMode='row' rows={data} columns={columns} hideFooter height={500} />
     </Box>
   );
 };
@@ -38,14 +22,12 @@ const SelectedProductsContent = () => {
 const SelectedProducts = () => {
   const data = useSelectedProduct();
   const { onUpdateData, onSetFunctionRefreshData } = useAPIDataContext();
-  const { onUpdateLoading } = useAPIFilterContext();
 
   useEffect(() => {
     if (data) {
       onUpdateData({ rows: data, total: data.length });
-      onUpdateLoading(false);
     }
-  }, [data, onUpdateLoading, onUpdateData, onSetFunctionRefreshData]);
+  }, [data, onUpdateData, onSetFunctionRefreshData]);
 
   return <SelectedProductsContent />;
 };
