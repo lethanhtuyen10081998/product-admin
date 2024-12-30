@@ -6,4 +6,4 @@ export type Props = TextFieldProps &
   IMaskInputProps & {
     counter?: number;
     ref?: React.RefObject<HTMLDivElement> | null | RefCallBack;
-  };
+  } & { sizeField?: 'small' | 'medium' };

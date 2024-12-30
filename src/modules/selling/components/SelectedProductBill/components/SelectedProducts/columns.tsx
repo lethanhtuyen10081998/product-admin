@@ -13,7 +13,8 @@ const useColumns = () => {
     {
       field: 'action',
       headerName: t(''),
-      minWidth: 50,
+      minWidth: 20,
+      sortable: false,
       align: 'center',
       renderCell: ({ row }) => {
         return (
@@ -46,7 +47,7 @@ const useColumns = () => {
     {
       field: 'name',
       headerName: t('Tên sản phẩm'),
-      minWidth: 200,
+      minWidth: 230,
     },
     {
       field: 'quantity',

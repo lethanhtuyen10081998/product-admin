@@ -1,3 +1,3 @@
-import { Props as TextFieldProps } from '../../NumberInput';
+import { Props as NumberFieldProps } from '../../NumberInput';
 
-export type Props = TextFieldProps & { name: string };
+export type Props = NumberFieldProps & { name: string };

@@ -7,10 +7,11 @@ import useYupValidationResolver from 'src/helpers/useYupValidationResolver';
 import { validation } from './validation';
 import FormTextField from 'src/components/material/form/FormTextField';
 import { useSelectedProduct } from 'src/modules/selling/selectedProductContext/hooksContext';
+import { useEffect } from 'react';
 
 export type FilterProductRequest = {
   totalQuantity: number;
-  totalPrice: number;
+  totalPrice: string;
   discountCode: string;
   discountAmount: number;
   discountType: string;
@@ -30,7 +31,16 @@ function Bill() {
   const { t } = useTranslation('sign-in');
   const selectedProducts = useSelectedProduct();
 
-  console.log(selectedProducts);
+  const totalQuantity = selectedProducts.reduce((acc, product) => acc + product.quantity, 0);
+  const totalPrice = selectedProducts.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0,
+  );
+
+  useEffect(() => {
+    methods.setValue('totalQuantity', totalQuantity);
+    methods.setValue('totalPrice', totalPrice.toString());
+  }, [totalQuantity, totalPrice, methods]);
 
   return (
     <Box component={Paper} p={SPACING.md}>
@@ -69,11 +79,11 @@ function Bill() {
                 </Grid>
                 <Grid item xs={6}>
                   <Box display='flex' flexDirection='column' gap={SPACING.sm}>
-                    <FormTextField
+                    <NumberField
                       variant='outlined'
-                      size='small'
                       name='totalPrice'
                       label={t('Tổng tiền')}
+                      sizeField='small'
                     />
                     <FormTextField
                       variant='outlined'
