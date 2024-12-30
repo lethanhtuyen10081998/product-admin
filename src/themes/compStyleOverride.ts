@@ -159,13 +159,7 @@ export default function componentStyleOverrides(theme: IThemeOption): Components
         },
       },
     },
-    MuiRadio: {
-      styleOverrides: {
-        root: {
-          color: theme.colors.common.black,
-        },
-      },
-    },
+
     MuiInputBase: {
       styleOverrides: {
         input: {
@@ -221,6 +215,13 @@ export default function componentStyleOverrides(theme: IThemeOption): Components
       },
     },
 
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          color: theme.colors.common.black,
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
         disableElevation: true,

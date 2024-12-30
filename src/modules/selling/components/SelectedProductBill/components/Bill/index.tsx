@@ -33,17 +33,65 @@ function Bill() {
       <Box component='form'>
         <FormProvider {...methods}>
           <Grid container display='flex' gap={SPACING.sm}>
-            <Grid item md={6}>
-              <Box display='flex' gap={SPACING.sm}>
-                <Typography fontWeight={700}> {t('Tổng số lượng')}:</Typography>
-                <Typography fontWeight={700} color='green'>
-                  25
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid item md={6}>
-              <FormTextField variant='outlined' name='discountCode' label={t('Mã giảm giá')} />
+            <Grid item md={12}>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Box display='flex' flexDirection='column' gap={SPACING.sm}>
+                    <FormTextField
+                      variant='outlined'
+                      size='small'
+                      name='totalQuantity'
+                      label={t('Tổng số lượng')}
+                    />
+                    <FormTextField
+                      variant='outlined'
+                      size='small'
+                      name='discountCode'
+                      label={t('Mã giảm giá')}
+                    />
+                    <FormTextField
+                      size='small'
+                      variant='outlined'
+                      name='paymentMethod'
+                      label={t('Phương thức thanh toán')}
+                    />
+                    <FormTextField
+                      variant='outlined'
+                      size='small'
+                      name='amountPaid'
+                      label={t('Số tiền đã trả')}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box display='flex' flexDirection='column' gap={SPACING.sm}>
+                    <FormTextField
+                      variant='outlined'
+                      size='small'
+                      name='totalPrice'
+                      label={t('Tổng tiền')}
+                    />
+                    <FormTextField
+                      variant='outlined'
+                      size='small'
+                      name='discountAmount'
+                      label={t('Số tiền giảm')}
+                    />
+                    <FormTextField
+                      size='small'
+                      variant='outlined'
+                      name='paymentStatus'
+                      label={t('Trạng thái thanh toán')}
+                    />
+                    <FormTextField
+                      size='small'
+                      variant='outlined'
+                      name='amountChange'
+                      label={t('Tiền thối lại')}
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </FormProvider>
