@@ -29,9 +29,24 @@ export function getListProduct(request: GetListProductRequest): Promise<GetListP
       resolve({
         data: {
           data: [
-            { id: 1, name: 'Gỗ thông - Giá Tốt, Miễn Phí Vận Chuyển, Đủ Loại 1' },
-            { id: 2, name: 'Gỗ thông - Giá Tốt, Miễn Phí Vận Chuyển, Đủ Loại 2' },
-            { id: 3, name: 'Giá đỗ - Giá Tốt, Miễn Phí Vận Chuyển, Đủ Loại 3' },
+            {
+              id: 1,
+              name: 'Gỗ thông - Giá Tốt, Miễn Phí Vận Chuyển, Đủ Loại 1',
+              unit: 'Cái',
+              price: 55000,
+            },
+            {
+              id: 2,
+              name: 'Bàn Gỗ thông - Giá Tốt',
+              unit: 'Cái',
+              price: 55000,
+            },
+            {
+              id: 3,
+              name: 'Giá đỗ - Giá Tốt, Miễn Phí Vận Chuyển, Đủ Loại 3',
+              unit: 'Cái',
+              price: 55000,
+            },
           ],
           total: 10,
         },

@@ -11,12 +11,6 @@ export const formatString = (value: string, variables: any) => {
   });
 };
 
-function convertVNDToUSD(amountVND: number) {
-  const exchangeRate = 23000;
-  const amountUSD = amountVND / exchangeRate;
-  return amountUSD;
-}
-
 // Function to format the amount
 export function formatMoney(
   amount = 0,
